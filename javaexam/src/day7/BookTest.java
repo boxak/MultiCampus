@@ -5,14 +5,17 @@ class Book{
 	String author;
 	int price;
 	Book(){
+		/*
 		title="Java의 정석";
 		author="남궁성";
 		price=30000;
+		*/
+		this("Java의 정석","남궁성",30000);
 	}
-	Book(String p1,String p2,int p3){
-		title=p1;
-		author=p2;
-		price=p3;
+	Book(String title,String author,int price){
+		this.title=title; //this는 class의 멤버 변수들의 참조값들을 가지고 있다. 자신의 객체의 참조값을 의미하는 리터럴
+		this.author=author; //
+		this.price=price;
 	}
 	String getBookInfo() {
 		String temp="";

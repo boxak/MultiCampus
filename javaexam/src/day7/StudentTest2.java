@@ -13,10 +13,10 @@ class StudentNew{
 	}
 	
 	void printStudentInfo() {
-		System.out.println(name+"학생은 나이가"+age+"입니다.");
+		System.out.println(name+"학생은 나이가 "+age+"입니다.");
 	}
 	void study() {
-		System.out.println(name+"학생은 과목이"+subject+"과목을 학습합니다.");
+		System.out.println(name+"학생은 "+subject+" 과목을 학습합니다.");
 	}
 	void study(int hour) {
 		System.out.println(name+"학생은 "+subject+"과목을 "+hour+"시간 동안 과목을 학습합니다.");
@@ -32,6 +32,7 @@ public class StudentTest2 {
 		StudentNew st2=new StudentNew("둘리",100,"Scalar");
 		System.out.println(st2);
 		st2.study(2);
+		st2.study();
 	}
 
 }
