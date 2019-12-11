@@ -1,22 +1,23 @@
 package day7;
 
-class Student{
+class Student{ //생성자가 없는 클래스, 구현하지 않았으면 만들어서 넣어줌.->무조건 argument를 안받음
 	String name;
 	int age;
 	String subject;
 	//static이 없어도 된다. student 에 없기 때문.
+	
 	void printInfo() {
 		System.out.println(name+"학생은 나이가"+age+"입니다.");
 	}
 	void study() {
-		System.out.println(name+"학생은 과목이"+subject+"과목을 학습합니다.");
+		System.out.println(name+"학생은 "+subject+"과목을 학습합니다.");
 	}
 }
 
 public class StudentTest {
 
 	public static void main(String[] args) {
-		Student st1=new Student();
+		Student st1=new Student(); //->객채 생성
 		System.out.println(st1);
 		System.out.println(st1.name);
 		System.out.println(st1.age);
