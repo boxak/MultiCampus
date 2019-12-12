@@ -35,11 +35,11 @@ public class TimeTest {
 		Time t2=new Time();
 		Time diff=new Time();
 		t1.setHour(1);
-		t1.setMinute(41);
+		t1.setMinute(11);
 		t1.setSecond(4.00f);
 		t2.setHour(1);
-		t2.setMinute(24);
-		t2.setSecond(11.00f);
+		t2.setMinute(11);
+		t2.setSecond(4.00f);
 		diff=getDiff(t1,t2);
 		System.out.printf("(%d Ω√, %d ∫–, %.2f √ )%n", diff.hour,diff.minute,diff.second);
 	}

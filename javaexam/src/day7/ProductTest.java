@@ -12,7 +12,7 @@ class Product{
 		this.balance=balance;
 		this.price=price;
 	}
-	String getName() {
+	String getName() { //스태틱 붙이면 안됨.
 		return name;
 	}
 	int getBalance() {
@@ -34,6 +34,9 @@ public class ProductTest {
 		Product p_set[]=new Product[] {p1,p2,p3,p4,p5};
 		for(int i=0;i<5;i++) {
 			System.out.printf("%s %d %,d원%n",p_set[i].getName(),p_set[i].getBalance(),p_set[i].getPrice());
+		}
+		for(Product data : p_set) {
+			System.out.printf("%s %d %,d원%n",data.getName(),data.getBalance(),data.getPrice());
 		}
 	}
 
