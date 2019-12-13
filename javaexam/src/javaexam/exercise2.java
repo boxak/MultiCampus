@@ -3,24 +3,45 @@ package javaexam;
 public class exercise2 {
 
 	public static void main(String[] args) {
-		String url="www.codechobo.com";
-		float f1=.10f; //0.10
-		float f2=1e1f; //10.0
-		float f3=3.14e3f;
-		double d=1.23456789;
 		
-		System.out.printf("f1=%f, %e, %g%n", f1,f1,f1);
-		System.out.printf("f1=%f, %e, %g%n", f2,f2,f2);
-		System.out.printf("f1=%f, %e, %g%n", f3,f3,f3);
-		
-		System.out.printf("d=%f%n", d);
-		System.out.printf("d=%14.10f%n", d); //전체 14자리 중 소수점 10자리
-		
-		System.out.printf("[12345678901234567890]%n");
-		System.out.printf("[%s]%n", url);
-		System.out.printf("[%20s]%n", url);
-		System.out.printf("[%-20s]%n", url); //왼쪽 정렬
-		System.out.printf("[%.8s]%n", url); //왼쪽에서 8글자만 출력
+		int Arr[]=new int [] {3,2,1,6,5,4};
+		printArr(Arr);
+		sortArr(Arr);
+		printArr(Arr);
+		System.out.println("sum="+sumArr(Arr));
 	}
+	
+	static void printArr(int[] Arr) {
+		System.out.print("[");
+		for(int i : Arr) {
+			System.out.printf("%d ", i);
+		}
+		System.out.println("]");
+	}
+	
+	static int sumArr(int[] arr) {
+		int sum=0;
+		for(int i=0;i<arr.length;i++) {
+			sum+=arr[i];
+		}
+		return sum;
+	}
+	
+	static void sortArr(int[] arr) {
+		for(int i=0;i<arr.length;i++) {
+			int min=arr[i];
+			int minInx=i;
+			for(int j=i+1;j<arr.length;j++) {
+				if(min>arr[j]) {
+					min=arr[j];
+					minInx=j;
+				}
+			}
+			int temp=arr[i];
+			arr[i]=arr[minInx];
+			arr[minInx]=temp;
+		}
+	}
+	
 
 }
