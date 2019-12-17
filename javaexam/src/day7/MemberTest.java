@@ -1,5 +1,12 @@
 package day7;
 
+class Member {
+	String name;
+	String account;
+	String password;
+	int birthyear;
+}
+
 public class MemberTest {
 
 	public static void main(String[] args) {

@@ -13,7 +13,7 @@ public class PolyTest {
 		printObjectInfo(new java.io.File("c:/Jiwon-Hwang/javaexam"));
 		printObjectInfo(new int[10]);
 		printObjectInfo(new double[5]);
-		printObjectInfo(new day7.Member());
+		printObjectInfo(new day7.MemberTest());
 		printObjectInfo(new Integer(100));
 		Object obj=new String("aaa");
 		

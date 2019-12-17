@@ -1,66 +1,65 @@
 package javaexam;
 
-class Shape{
-	String color="blue";
-	void draw() {
-		
+class Car{
+	String color;
+	int door;
+	void drive() {
+		System.out.println("drive, Brrrr~");
+	}
+	void stop() {
+		System.out.println("stop!!!");
 	}
 }
 
-class Point{
-	int x;
-	int y;
-	
-	Point(){
-		this(0,0);
-	}
-	
-	Point(int x,int y){
-		this.x=x;
-		this.y=y;
+class FireEngine extends Car{
+	void water() {
+		System.out.println("water!!!");
 	}
 }
 
-class Circle extends Shape{
-	Point center;
-	int r;
-	
-	Circle(){
-		this(new Point(0,0),100);
-	}
-	
-	Circle(Point center,int r){
-		this.center=center;
-		this.r=r;
-	}
-	
-}
-
-class Triangle extends Shape{
-	Point[] p;
-	Triangle(Point[] p){
-		this.p=p;
-	}
-	Triangle(Point p1,Point p2,Point p3){
-		p=new Point[] {p1,p2,p3};
+class Ambulance extends Car{
+	void siren() {
+		System.out.println("siren~~~");
 	}
 }
-
-
 
 public class Exercise3 {
 
 	public static void main(String[] args) {
-		
-		Circle c1=new Circle();
-		Circle c2=new Circle(new Point(150,150),50);
-		
-		Point p[]= {new Point(100,100),new Point(140,50),new Point(200,100)};
-		
-		
-		Triangle t1=new Triangle(p);
-		
-		
+		/*
+		Car car1 = null;
+		FireEngine fe=new FireEngine();
+		FireEngine fe2=null;
+		fe.water();
+		car1=fe; //car1=(Car)fe에서 형변환 생략된 형태
+		fe2=(FireEngine)car1;
+		fe2.water();
+		System.out.println(fe);
+		System.out.println(fe2);
+		System.out.println(car1);*/
+		Car car = new FireEngine();
+		Car car2 = null;
+		FireEngine fe = null;
+
+		car.drive();
+		fe = (FireEngine)car;
+		fe.drive();
+		car2=fe;
+		car2.drive();
+		doWork(car2);
+		doWork(fe);
+		doWork(car);
+	}
+	
+	static void doWork(Car c) {
+		if(c instanceof FireEngine) {
+			FireEngine fe=(FireEngine)c;
+			fe.water();
+		}
+		else {
+			Ambulance a = (Ambulance)c;
+			a.siren();
+		}
 	}
 	
 }
