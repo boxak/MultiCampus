@@ -837,6 +837,197 @@ LiteralTest
 	b3.equals(b2) ? true
 
 
+  API : Application Programming Interface(라이브러리, 패키지)
+         자주 사용되는 기능을 미리 만들어 놓은 프로그램
+         자바 : 클래스, abstract 클래스, 인터페이스..
+         C : 함수
+
+
+   필답평가>비NCS전공교과>Java기반의프로그래밍기초 : 4시 ~ 4시 30분
+
+   수행평가>비NCS전공교과>Java기반의프로그래밍기초
+
+   --- 강사컴퓨터의 공유폴더에 수행평가>자바 폴더에 있는 test 패키지를
+        내 이클립스의 src 폴더에 복사한 후에 문제에서 제시된 기능을
+        각각의 클래스의 코드로 채워 넣는다.
+
+
+  70.12.115.160
+
+  Collection API : 데이터들을 저장하여 사용하는 방의 역할을 하는 API
+
+
+   - 저장할 수 있는 데이터의 타입에 제한이 없다.
+   - 저장할 수 있는 데이터의 갯수에 제한이 없다.
+
+   List - 저장되는 데이터의 순서를 유지한다.
+            저장되는 데이터의 중복을 허용한다.
+            ArrayList, LinkedList, Vector
+
+   Set - 저장되는 데이터의 순서를 유지하지 않는다.
+            저장되는 데이터의 중복을 허용하지 않는다.
+            HashSet, LikedHashSet
+
+
+   Map - 데이터 이름과 데이터 값을 쌍으로 저장한다.
+            데이터 이름은 중복저장이 불가능하다.
+            (키)
+            key-value 쌍으로 데이터 저장
+           	HashMap, Hashtable
+
+   Collections 클래스 : Collection API 들을 도와주는 도우미 클래스
+
+
+    import java.util.LinkedList;
+    import java.util.Iterator;
+
+    --->
+
+    import java.util.*;
+
+
+  [ 문자셋(charset) ]
+
+  ASCII : 0x00~0x7f(1byte)
+            0x41~ 영문 대문자, 0x61~ 영문 소문자....
+
+  
+  ~1986 년 : 표준화된 한글 코드가 없었다.
+                 컴퓨터마다 한글 코드가 달랐다.
+  ~1987 년 : 표준화된 한글 코드 : 완성형 한글 코드 : KSC5601 : 영문(1byte:ASCII), 한글(2byte)
+                                                                   (EUC-KR, MS949(CP949))
+					   0xB0A1~ 가...
+					   native code
+   .........
+
+  1990년 : 전세계의 나라언어 코드를 통일하자 : unicode : 2바이트 : utf-16, utf16
+                                                                          A : 0x0041, 가 : 0xAC00
+                                                                          1~4바이트 : utf-8, utf8
+					          A : 0x41, 가 : 0xEAB080													
+
+  OS - MS949   
+  Java - utf-16
+  Web - utf-8                                                       
+
+
+                 
+
+
+
+  [ 입출력(I/O) 프로그래밍 API ]
+
+  - java.io, javax.nio
+    -------
+  - File : 시스템에 존재하는 파일에 대한 처리, 정보 추출....
+  - 입력용 API, 출력용 API
+  - 입력 단위 : 바이트 단위, 문자 단위
+                      (1.0)         (1.1)
+	             ----------> InputStreamReader
+  - 스트림 이라는 논리적인 구조 이용한다.
+    입력 스트림과 출력 스트림으로 구분한다.
+  
+  - xxxInputStream, xxxOutputStream : 바이트 스트림
+    xxxReader, xxxWriter : 문자 스트림
+
+  - 문자스트림
+     
+    FileReader, FileWriter - 파일 오픈 기능
+    BufferedReader, BufferedWriter
+
+  - 바이트스트림
+    FileInputStream, FileOutputStream - 파일 오픈 기능
+    DataInputStream, DataOutputStream
+    ObjectInputStream, ObjectOutputStream
+
+  - InputStreamREader, OutputStreamWriter
+
+
+
+
+
+ 
+
+     \s  : 공백
+     * : 0개 이상
+
+     ab*
+
+
+
+
+    
+
+
+
+
+
+  I18N : 국제화
+
+
+Java 구문 - SQL - JDBC -  HTML5 - CSS3 - JavaScript(jQuery) - Ajax
+Servlet - JSP - Spring - Mybatis - D3.js(웹 기반 시각화) - 1day 게시판 프로젝트 -
+미니프로젝트
+리눅스(CentOs7) - Hadoop 2.x.x(설치,설정, HDFS, MapReduce) - Hive - Spark
+- R(구문, 데이터 수집(웹크롤링,공공DB,SNS Open API), 통계분석, 데이터마이닝, 
+  텍스트마이닝,시각화) - Java와 R 연동
+팀프로젝트 : 빅데이터를 가지고 분석하여 웹으로 서비스하는 모델
+
+
+[ Oracle 설치 ]
+
+
+  CRUD
+  Create
+  Read
+  Update
+  Delete
+
+  관리자계정(system) 암호 : manager
+
+
+  서버와 클라이언트
+           ---------
+           (1) cmd 창에 나가서 sqlplus 라는 명령을 수행시킨다.
+           (2) sqldeveloper 라는 추가프로그램을 설치하여 사용
+  
+  학습용 일반계정 : scott(생성), hr(락해제)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(1) sqlplus 라는 명령으로 오라클 사용하기 
+cmd 창을 기동시킨다.
+sqlplus 
+[ scott 계정 생성 ]
+SQL> @C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
+SQL> alter user scott identified by tiger;
+SQL> connect system/manager
+
+[ hr 계정 락(lock) 풀기 ]
+alter user hr account unlock;
+alter user hr identified by hr;
+
+[ jdbctest 계정 만들기 : JDBC 수업시간에 사용 ]
+create user jdbctest identified by jdbctest;
+grant connect, resource to jdbctest;
+
 
 
 
