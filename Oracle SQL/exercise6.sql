@@ -108,7 +108,7 @@ WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE ENAME LIKE '%T%');
 
 SELECT EMPNO, ENAME, SAL
 FROM EMP
-WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE SAL>AVG(SAL) AND ENAME LIKE '%S');
+WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE SAL>(SELECT AVG(SAL) FROM EMP) AND ENAME LIKE '%S%');
 
 --8. 30번 부서에 있는 직원들 중에서 가장 많은 월급을 받는 직원보다
 --   많은 월급을 받는 직원들의 이름, 부서번호, 월급을 출력한다. 
@@ -120,6 +120,10 @@ WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE SAL>AVG(SAL) AND ENAME LIKE '%S');
 --FORD	20	3000
 --KING	10	5000
 
+SELECT ENAME 이름,DEPTNO 부서번호, SAL 월급
+FROM EMP
+WHERE SAL>ALL(SELECT SAL FROM EMP WHERE DEPTNO=30);
+
 --9. SALES 부서에서 일하는 직원들의 부서번호, 이름, 직업을 출력한다.
 --DEPTNO    ENAME       JOB      
 ---------- ---------- ---------
@@ -130,11 +134,18 @@ WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE SAL>AVG(SAL) AND ENAME LIKE '%S');
 --30번 부서  TURNER      SALESMAN
 --30번 부서  JAMES	       CLERK
  
+ SELECT TO_CHAR(DEPTNO,'999') ||''|| '번 부서' AS "DEPTNO",ENAME,JOB
+ FROM EMP
+ WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE DNAME='SALES');
 
---10. 'KING'에게 보고하는 모든 직원의 이름과 급여를 출력한다. 
---     (KING에게 보고하는 직원이란 mgr이 KING인 직원을 의미함) 
+--10. 'KING'에게 보고하는 모든 직원의 이름과 입사날짜를 출력한다. 
+--     (KING에게 보고하는 직원이란 mgr이 KING인 직원을 의미함)
 --이름         입사날짜
 ---------- ----------
 --JONES	   1981년 04월 02일
 --BLAKE	   1981년 05월 01일
 --CLARK	   1981년 06월 09일
+
+SELECT ENAME 이름,TO_CHAR(HIREDATE,'YYYY"년" MM"월" DD"일"') 입사날짜
+FROM EMP
+WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='KING');
