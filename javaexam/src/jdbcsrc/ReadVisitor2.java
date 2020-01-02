@@ -18,7 +18,7 @@ public class ReadVisitor2 {
 				+"'";
 		sc.close();
 		ResultSet rs=stmt.executeQuery(sql);
-		while(rs.next()) {
+		while(rs.next()) { //getXXX()도 위험한 함수였다.
 			System.out.println(rs.getString("name")+":"
 					+rs.getDate("writedate")+":"+rs.getString("memo"));
 		}
