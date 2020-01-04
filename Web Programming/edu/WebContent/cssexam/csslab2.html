@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>과일의 종류</title>
+<style>
+	div{
+		margin : 0 auto;
+		text-align : center;
+	}
+	#div_title{
+		width : 100px;
+		height : 50px;
+		color : white;
+		background-image : linear-gradient(45deg,yellow,green);
+		padding : 30px;
+		border : 1px white;
+		border-radius : 5px;
+	}
+	hr{	
+		height : 1px;
+		background-image : linear-gradient(to right,yellow,#ff9900,red,#cc3300,#4d2600,#0d0d0d);
+	}
+	img{
+		width : 70px;
+		height : 70px;
+		border : 1px solid lime;
+		border-radius : 5px;
+		box-shadow : 3px 3px 3px lime;
+	}
+	img.fruit1:hover{
+		transform : rotate(10deg);
+		transition : transform 1s;
+	}
+	img.fruit2:hover{
+		transform : rotate(-10deg);
+		transition : transform 1s;
+	}
+	#fruit{
+		color : #ff00ff;
+	}
+	#kind{
+		color : #ff9900;
+	}
+</style>
+</head>
+<body>
+	<div id="div_title"><span id="fruit">과일</span>의 <span id="kind">종류</span></div>
+	<hr>
+	<div id="div_fruits">
+		<img src="/edu/images/fruitimage/r1.gif" class="fruit1">
+		<img src="/edu/images/fruitimage/r2.gif" class="fruit1">
+		<img src="/edu/images/fruitimage/r3.jpg" class="fruit1">
+		<img src="/edu/images/fruitimage/r4.gif" class="fruit1"><br>
+		<img src="/edu/images/fruitimage/r5.png" class="fruit2">
+		<img src="/edu/images/fruitimage/r6.png" class="fruit2">
+		<img src="/edu/images/fruitimage/r7.png" class="fruit2">
+		<img src="/edu/images/fruitimage/r8.jpg" class="fruit2">
+	</div>
+</body>
+</html>
