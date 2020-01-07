@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>This is Calculator</title>
+</head>
+<body>
+	<script>
+		var num1;
+		var num2;
+		var num3;
+		var operator;
+		
+		num1=window.prompt("첫번째 숫자 입력해주세요");
+		operator=window.prompt("연산자를 입력해주세요(+,-,*,/,%)");
+		num2=window.prompt("두번째 숫자 입력해수제요");
+		if(operator!='+' && operator!='-' && operator!='*' && operator!='/' && operator!='%'){
+			document.writeln('<h2 style="color : red;">+,-,*,/,% 중에서 입력해주세요!</h2>');
+		}
+		else{
+			
+			switch(operator){
+				case '+' :
+					num3=Number(num1)+Number(num2);
+					break;
+				case '-' : 
+					num3=Number(num1)-Number(num2);
+					break;
+				case '*' :
+					num3=Number(num1)*Number(num2);
+					break;
+				case '/' :
+					num3=Number(num1)/Number(num2);
+					break;
+				case '%' :
+					num3=num1%num2;
+			}
+			
+			
+			document.writeln('<h2 style="color : blue;">'+num1+'과 '+num2+'의 '+operator+' 연산 결과는 '+num3+'입니다.');
+		}
+		
+	</script>
+</body>
+</html>
