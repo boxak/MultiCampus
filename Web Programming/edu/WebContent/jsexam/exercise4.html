@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Exercise</title>
+</head>
+<body>
+	<script>
+		var Arr=new Array(10);
+		var rand;
+		for(var i=0;i<10;i++){
+			rand=Math.random();
+			Arr[i]=Math.floor(rand*50)+1;
+		}
+		document.writeln("정렬 전 : "+Arr);
+		
+		document.writeln("<br>");
+		Arr.sort(function(a,b){return a-b;});
+		document.writeln("정렬 후 : "+Arr);
+		
+	</script>
+</body>
+</html>
