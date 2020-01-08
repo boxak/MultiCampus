@@ -5,7 +5,7 @@
 <title>JavaScript Exercise6</title>
 </head>
 <body>
-
+<script src="util.js"></script>
 <script>
 
 	function calc(){
@@ -25,11 +25,16 @@
 			return sum;
 		}
 	}
-	document.write('<h3>'+calc()+'</h3><br>');
-	document.write('<h3>'+calc(10,20,'30')+'</h3><br>');
-	document.write('<h3>'+calc(10,'가나다',20)+'</h3><br>');
-	document.write('<h3>'+calc(1,2,3,4,5)+'</h3><br>');
-
+	//document.write('<h3>'+calc()+'</h3><br>');
+	//document.write('<h3>'+calc(10,20,'30')+'</h3><br>');
+	//document.write('<h3>'+calc(10,'가나다',20)+'</h3><br>');
+	//document.write('<h3>'+calc(1,2,3,4,5)+'</h3><br>');
+	
+	write(calc(),"h3");
+	write(calc(10,20,'30'),"h3");
+	write(calc(10,'가나다',20),"h3");
+	write(calc(1,2,3,4,5),"h3");
+	
 </script>
 
 </body>

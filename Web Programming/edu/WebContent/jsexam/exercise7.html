@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	
+	function printH1(content){
+		document.write("<h1>"+content+"</h1>");
+	}
+	function printH4(content){
+		document.write("<h4>"+content+"</h4>");
+	}
+	function apply(arr,fn){
+		if(arr==undefined || fn==undefined || typeof arr!='object' || typeof fn!='function'){
+			console.log("아규먼트 오류");
+			return false;
+		}
+		else{
+			for(var i=0;i<arr.length;i++){
+				fn(arr[i]);
+			}
+			return true;
+		}
+	}
+	var myArr=[];
+	var element;
+	var message;
+	while(true){
+		element=undefined;
+		element=window.prompt();
+		if(element==undefined){
+			break;
+		}
+		myArr.push(element);
+	}
+	var d = new Date();
+	var whatday=d.getDay();
+	if(whatday%2==1){
+		message=apply(myArr,printH1);
+	}
+	else{
+		if(whatday==0){
+			message=apply("ㅋㅋ",printH1);
+		}
+		else if(whatday==6){
+			message=apply(myArr);
+		}
+		else{
+			message=apply(myArr,printH4);
+		}
+	}
+	if(message){
+		window.alert("성공");
+	}
+	else{
+		window.alert("실패");
+	}
+	
+</script>
+</body>
+</html>
