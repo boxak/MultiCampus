@@ -11,13 +11,13 @@
 function pr(p) {
 	document.write(typeof p + " : " + p + "<br>");	
 }
-pr(100);
-pr("100");
-pr(true);
-pr(3.5);
-pr(new Array(1,2,3));
+pr(100); //number : 100
+pr("100"); // String : "100"
+pr(true); // bool : true
+pr(3.5); //number : 3.5
+pr(new Array(1,2,3)); //Object : [1,2,3]
 //prNum(10);
-//document.write("ㅋㅋㅋㅋㅋㅋ");
+document.write("ㅋㅋㅋㅋㅋㅋ");
 </script>
 <hr>
 <script>
@@ -29,13 +29,13 @@ function prNum(p) {
 	else
 		document.write(typeof p + " : " + p + "<br>");	
 }
-prNum(100);
-prNum("100");
-prNum(true);
-prNum(3.5);
-prNum(new Array(1,2,3));
-prNum();
-pr(100000);
+prNum(100); //숫자 전달 : 100
+prNum("100"); //String : "100"
+prNum(true); //bool : true
+prNum(3.5); //number: 3.5
+prNum(new Array(1,2,3)); //Object : [1,2,3]
+prNum(); //아규먼트를 전달하시오 : undefined
+pr(100000); //number : 1000000
 </script>
 <hr>
 <script>
@@ -49,10 +49,10 @@ var r1 = prAll(100);
 var r2 = prAll(1,2,3,4,5);
 var r3 = prAll('a', 'b', '가', true);
 var r4 = prAll();
-document.write(r1 + "<br>");
-document.write(r2 + "<br>");
-document.write(r3 + "<br>");
-document.write(r4 + "<br>");
+document.write(r1 + "<br>"); //1
+document.write(r2 + "<br>"); //5
+document.write(r3 + "<br>"); //4
+document.write(r4 + "<br>"); //0
 </script>
 </body>
 </html>
