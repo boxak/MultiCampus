@@ -6,13 +6,15 @@
 </head>
 <body>
 <script>
-	
+	//h1태그로 컨텐트 출력
 	function printH1(content){
 		document.write("<h1>"+content+"</h1>");
 	}
+	//h4태그로 컨텐트 출력
 	function printH4(content){
 		document.write("<h4>"+content+"</h4>");
 	}
+	//배열, 함수를 받는 함수, 잘못 들어오면 false, 제대로 들어오면 배열값 출력과 true 리턴
 	function apply(arr,fn){
 		if(arr==undefined || fn==undefined || typeof arr!='object' || typeof fn!='function'){
 			console.log("아규먼트 오류");
@@ -28,26 +30,34 @@
 	var myArr=[];
 	var element;
 	var message;
+	//취소가 선택되면 -> undefined가 된다.
+	//빈 값이 확인으로 입력되면 -> String임.
 	while(true){
 		element=undefined;
-		element=window.prompt();
+		element=window.prompt("입력하세요. 취소를 누르면 중단됩니다.");
 		if(element==undefined){
 			break;
 		}
 		myArr.push(element);
 	}
+	//d는 오늘 날짜.
 	var d = new Date();
+	//요일 : 일요일이 0, 토요일이 6
 	var whatday=d.getDay();
 	if(whatday%2==1){
+		//월, 수, 금
 		message=apply(myArr,printH1);
 	}
 	else{
+		//일요일
 		if(whatday==0){
 			message=apply("ㅋㅋ",printH1);
 		}
+		//토요일
 		else if(whatday==6){
 			message=apply(myArr);
 		}
+		//화요일, 목요일
 		else{
 			message=apply(myArr,printH4);
 		}
