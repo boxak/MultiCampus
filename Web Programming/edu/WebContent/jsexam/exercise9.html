@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exercise 9</title>
+</head>
+<body>
+<h1>Exercise 9</h1>
+<script src="util.js"></script>
+<script>
+
+	function DayInfo(name,year,month,date){
+		this.name=name;
+		this.year=year;
+		this.month=month;
+		this.date=date;
+	}
+	DayInfo.prototype.getTotalDays=function(){
+		var birthDay=new Date(this.year,this.month-1,this.date);
+		
+		var nowTime=new Date();
+		var sec1=birthDay.getTime();
+		var sec2=nowTime.getTime();
+		var countDay=Math.floor((sec2-sec1)/(24*3600*1000));
+		return this.name+"님은 태어난지 "+countDay+"일 되었어요.";
+	}
+	DayInfo.prototype.getKorDay=function(){
+		var birthDay=new Date(this.year,this.month-1,this.date);
+		var days=['일','월','화','수','목','금','토'];
+		return this.name+"님은 "+days[birthDay.getDay()]+"요일에 태어났어요.";
+	}
+	var str1=window.prompt("이름 출생연도 월 일 순으로 입력해주세요.");
+	var save1=[];
+	save1=str1.split(' ');
+	var str2=window.prompt("이름 출생연도 월 일 순으로 입력해주세요.");
+	var save2=[];
+	save2=str2.split(' ');
+	var str3=window.prompt("이름 출생연도 월 일 순으로 입력해주세요.");
+	var save3=[];
+	save3=str3.split(' ');
+	var d=new Date();
+	var Day1=new DayInfo(save1[0],save1[1],save1[2],save1[3]);
+	var Day2=new DayInfo(save2[0],save2[1],save2[2],save2[3]);
+	var Day3=new DayInfo(save3[0],save3[1],save3[2],save3[3]);
+	var Days=[Day1,Day2,Day3];
+	var colors=["blue","red","green"];
+	for(var i=0;i<3;i++){
+		writeColor(Days[i].getTotalDays(),"h3",colors[i]);
+		writeColor(Days[i].getKorDay(),"h3",colors[i]);
+	}
+	
+
+</script>
+
+</body>
+</html>
