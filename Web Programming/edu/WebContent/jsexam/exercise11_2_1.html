@@ -11,20 +11,22 @@
 	<button id="yellow">노랑색</button>
 	
 	<script>
-		var h2dom = document.getElementsByTagName("h2")[0];
-		var dateInfo = new Date();
-		h2dom.textContent = "오늘은 "+dateInfo.getFullYear() + "년 "
-							+(dateInfo.getMonth()+1)+"월 " 
-							+dateInfo.getDate()+ "일입니다.";
+		var target=document.getElementsByTagName("h2")[0];
+		var today=new Date();
+		target.textContent="오늘은 "+today.getFullYear()+"년 "+(today.getMonth()+1)+"월 "+today.getDate()+"일입니다.";
 		
-		var btns = document.getElementsByTagName("button");
-
+		var btns=document.getElementsByTagName("button");
+		
 		var total = function(){
-			h2dom.style.color = this.id;
-		};		
+			target.style.color=this.id;
+		};
 		
-		for(var i in btns) 	
-			btns[i].onclick = total;
+		for(var i in btns){
+			btns[i].onclick=total;
+		}
+		
+			
 	</script>
 </body>
 </html>
+
