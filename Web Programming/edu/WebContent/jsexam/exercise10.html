@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exercise 10</title>
+</head>
+<body>
+<h1 style="color : blue; font-family : Times New Roman;">3초 후 이동합니다...</h1>
+<img src="https://mblogthumb-phinf.pstatic.net/MjAxOTA2MTlfOTkg/MDAxNTYwOTI3ODEyMzEw.h7Z8l5STUtDxChK3p9NLThcK4mhL9kUG7byVhPvoNZog.sx3cZiHmboQWUS6QXXNfw1zh3AuXdqttadWjEdgNA0og.GIF.ebsstory/%ED%8E%AD%EC%88%98gif%EC%98%88%EC%8B%9C3_EBS_%EC%9E%90%EC%9D%B4%EC%96%B8%ED%8A%B8%ED%8E%ADTV_%ED%8E%AD%EC%88%98_%EC%9D%B8%EA%B8%B0%EC%BA%90%EB%A6%AD%ED%84%B0_%ED%95%B5%EC%9D%B8%EC%8B%B8_%EC%9D%B4%EB%B2%A4%ED%8A%B8.gif?type=w2">
+<script>
+
+	var rand=Math.floor(Math.random()*3)+1;
+	var check=window.confirm("확인 : 포탈 사이트로 이동/취소 : first.html로 이동");
+	
+	setTimeout(function(){
+		
+		if(check==false){
+			location.href="http://localhost:8000/edu/htmlexam/first.html";
+		}
+		else{
+			if(rand==1){
+				location.href="https://www.daum.net/";
+			}
+			else if(rand==2){
+				location.href="https://www.naver.com/";
+			}
+			else{
+				location.href="https://www.google.co.kr/";
+			}
+		}
+		
+		
+		
+	},3000);
+</script>
+</body>
+</html>

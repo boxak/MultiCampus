@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2></h2>
+	<button id="red">빨강색</button>
+	<button id="blue">파랑색</button>
+	<button id="yellow">노랑색</button>
+	
+	<script>
+		var target=document.getElementsByTagName("h2")[0];
+		var today=new Date();
+		target.textContent="오늘은 "+today.getFullYear()+"년 "+(today.getMonth()+1)+"월 "+today.getDate()+"일입니다.";
+		
+		var btns=document.getElementsByTagName("button");
+		
+		var total = function(){
+			target.style.color=this.id;
+		};
+		
+		for(var i in btns){
+			btns[i].onclick=total;
+		}
+		
+			
+	</script>
+</body>
+</html>
+
