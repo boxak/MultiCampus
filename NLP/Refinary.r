@@ -49,13 +49,13 @@ Refinary <- function(n){
         뜻풀이.음절 <- c(뜻풀이.음절,str_length(data[i,3])-str_count(data[i,3],' ')-str_count(data[i,3],',')-str_count(data[i,3],'\\(')-str_count(data[i,3],'\\)')-str_count(data[i,3],fixed("."))-str_count(data[i,3],'‘')-str_count(data[i,3],'’'))
         뜻풀이.어절 <- c(뜻풀이.어절,str_count(data[i,3],' ')+1)
     }
-    data[,"뜻풀이"] <- NULL
     print("4 ")
+    data[,"뜻풀이"] <- NULL
     if(n<10){
-        writexl::write_xlsx(cbind(data,뜻풀이.음절,뜻풀이.어절), path = paste0("RefinedData00",as.character(n),".xlsx"))
+        write.table(data,file=paste0("RefinedData00",as.character(n),".csv"),row.names=TRUE,col.names=FALSE,append=T,sep=",",fileEncoding="UTF-8")
     }
     else{
-        writexl::write_xlsx(cbind(data,뜻풀이.음절,뜻풀이.어절), path = paste0("RefinedData0",as.character(n),".xlsx"))
+        write.table(data,file=paste0("RefinedData0",as.character(n),".csv"),row.names=TRUE,col.names=FALSE,append=T,sep=",",fileEncoding="UTF-8")
     }
     sprintf("%s is refined successfully",str)
 }
