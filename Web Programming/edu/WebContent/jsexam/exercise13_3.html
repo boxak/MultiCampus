@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exercise 13</title>
+</head>
+<body>
+<h1>Exercise 13</h1>
+<hr>
+
+<button>이미지 보이기</button>
+<button>이미지 숨기기</button>
+<br>
+<img src="../images/duke_luau.png">
+
+<script>
+
+	var target = document.getElementsByTagName("img")[0];
+	var btns = document.getElementsByTagName("button");
+	
+	target.style.display="none";
+	
+	btns[0].addEventListener("click",function(){
+		target.style.display="inline";
+	});
+	
+	btns[1].addEventListener("click",function(){
+		target.style.display="none";
+	});
+
+</script>
+
+</body>
+</html>

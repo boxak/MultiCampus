@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>SMILE~~~</title>
+<script>
+
+	window.onload = function(){
+		//draw face
+		var canvas = document.getElementById("mycanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.beginPath();
+		ctx.arc(100,100,80,0,Math.PI*2,true);
+		ctx.fillStyle="yellow";
+		ctx.fill();
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		ctx.stroke();
+		
+		//draw left eye
+		ctx.beginPath();
+		ctx.arc(70,80,20,0,Math.PI,true);
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		
+		//draw right eye
+		ctx.beginPath();
+		ctx.arc(130,80,20,0,Math.PI,true);
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		
+		//draw mouth
+		ctx.beginPath();
+		ctx.arc(100,120,20,0,Math.PI,false);
+		ctx.fillStyle="Red";
+		ctx.fill();
+		ctx.closePath();
+		
+		//draw rectangle face
+		var canvas2=document.getElementById("mycanvas2");
+		var ctx2=canvas2.getContext("2d");
+		
+		ctx2.beginPath();
+		ctx2.fillStyle="lime";
+		ctx2.fillRect(200,0,400,200);
+		ctx2.closePath();
+		
+		ctx2.beginPath();
+		ctx2.arc(300,50,20,0,Math.PI,true);
+		ctx2.strokeStyle="black";
+		ctx2.stroke();
+		ctx2.closePath();
+		
+		ctx2.beginPath();
+		ctx2.arc(500,50,20,0,Math.PI,true);
+		ctx2.strokeStyle="black";
+		ctx2.stroke();
+		ctx2.closePath();
+		
+		ctx2.beginPath();
+		ctx2.arc(400,150,40,0,Math.PI,false);
+		ctx2.fillStyle="Red";
+		ctx2.fill();
+		ctx2.closePath();
+		
+		var canvas3=document.getElementById("zola");
+		var zolaman=canvas3.getContext("2d");
+		zolaman.beginPath();
+		zolaman.arc(200,200,100,0,2*Math.PI,true);
+		zolaman.fillStyle="Red";
+		zolaman.fill();
+		zolaman.closePath();
+		
+		zolaman.beginPath();
+		zolaman.arc(200,200,97,165*Math.PI/180,200*Math.PI/180,false);
+		zolaman.strokeStyle="black";
+		zolaman.stroke();
+		zolaman.closePath();
+		
+		zolaman.beginPath();
+		zolaman.arc(200,200,97,15*Math.PI/180,-20*Math.PI/180,false);
+		zolaman.strokeStyle="black";
+		zolaman.stroke();
+		zolaman.closePath();
+		
+		
+		
+	}
+
+</script>
+
+</head>
+<body>
+
+<canvas id="mycanvas" width="300" height="400"></canvas>
+<canvas id="mycanvas2" width="340" height="400"></canvas>
+<canvas id="zola" width="340" height="400"></canvas>
+</body>
+</html>
