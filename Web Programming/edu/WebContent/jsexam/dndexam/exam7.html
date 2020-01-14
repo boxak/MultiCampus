@@ -23,6 +23,7 @@ window.onload = function() {
     target.ondragover = function(event) {
         if(event.preventDefault) event.preventDefault();
         return false;
+        //preventDefault가 없으면 return false를 해서 드래그 해제.
     }
     
     target.ondragenter = function(event){
@@ -39,6 +40,7 @@ window.onload = function() {
         if(event.preventDefault) event.preventDefault();
         target.classList.remove('hover');
         var filedata = event.dataTransfer.files[0];
+        //아무리 많은 파일을 가져와도 첫번째 파일만 처리함.
         readFile(filedata);
     }
 }
