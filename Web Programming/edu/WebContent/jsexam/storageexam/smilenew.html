@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>SMILE~~~</title>
+<script>
+
+	window.onload = function(){
+		//draw face
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.beginPath();
+		ctx.arc(100,100,80,0,Math.PI*2,true);
+		ctx.fillStyle="yellow";
+		ctx.fill();
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+
+		
+		
+		ctx.beginPath();
+		ctx.arc(70,80,20,0,Math.PI,true);
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		
+		
+		ctx.beginPath();
+		ctx.arc(130,80,20,0,Math.PI,true);
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		
+		
+		ctx.beginPath();
+		ctx.arc(100,120,20,0,Math.PI,false);
+		ctx.fillStyle="Red";
+		ctx.fill();
+		ctx.closePath();
+		
+		//draw rectangle face
+		
+		ctx.beginPath();
+		ctx.fillStyle="lime";
+		ctx.fillRect(200,0,400,200);
+		ctx.fill();
+		ctx.closePath();
+		
+		ctx.beginPath();
+		ctx.arc(300,50,20,0,Math.PI,true);
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		
+		ctx.beginPath();
+		ctx.arc(500,50,20,0,Math.PI,true);
+		ctx.strokeStyle="black";
+		ctx.stroke();
+		ctx.closePath();
+		
+		ctx.beginPath();
+		ctx.arc(400,150,40,0,Math.PI,false);
+		ctx.fillStyle="Red";
+		ctx.fill();
+		ctx.closePath();
+		
+	}
+
+</script>
+
+</head>
+<body>
+<button onclick="save();">저장하기</button>
+<button onclick="initialize();">삭제하기</button>
+<button onclick="restore();">불러오기</button>
+<br>
+<br>
+<canvas id="myCanvas" width="1000" height="400"></canvas>
+
+<script>
+
+	var canvas = document.getElementById("myCanvas");    
+	var context = canvas.getContext("2d"); 
+	var rect = canvas.getBoundingClientRect();
+	
+	
+	function initialize() {
+	    context.clearRect(0,0,1000,400);
+	    context.beginPath();
+	    context.rect(0,0,1000,400);
+	    
+	}
+	
+	function save() {	
+	    alert(canvas.toDataURL()); 
+	    localStorage.setItem("canvas", canvas.toDataURL());    
+	}
+	
+	function restore() {
+		var img = new Image();
+	    img.src = localStorage.getItem("canvas");
+	    img.onload = function() {
+	    	context.drawImage(img, 0, 0);        
+	    } //비동기 처리. 이미지가 로드되고 나서 드로우 이미지 처리. 택배가 오기까지 쇼핑하는거 -> 비동기
+	    	//동기 처리 -> 택배가 오기까지 꼼짝않고 기다리는 거.
+	}
+	
+	
+</script>
+</body>
+</html>

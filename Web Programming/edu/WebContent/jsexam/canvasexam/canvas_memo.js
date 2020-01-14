@@ -68,6 +68,8 @@ function restore() {
     img.onload = function() {
     	context.drawImage(img, 0, 0);        
     }
+    //load 이벤트가 발생해야 드로우 이미지를 해야함 -> 이미지가 다 로드가 안된채 드로우 될 수 있는 위험을 없앤다.
+    //디코딩 하는 시간이 필요하다.
 }
 function upload() {
 	var data = new FormData();
