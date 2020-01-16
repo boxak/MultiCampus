@@ -4,6 +4,15 @@
 	<meta charset="utf-8">
 	<title>Drag and Drop</title>
 	<link rel="stylesheet" href="dragdrop.css"></link>
+	<style>
+	
+		canvas{
+		
+			border : 2px solid 
+		
+		}
+	
+	</style>
 	<script>
 		var canvas, drop;
 		function initiate(){
@@ -66,6 +75,7 @@
 		
 		function changeBColor(){
 			var fill=document.getElementById("BColor").value;
+			console.log(fill);
 			canvas.fillStyle=fill;
 			canvas.fillRect(0,0,500,300);
 		}
