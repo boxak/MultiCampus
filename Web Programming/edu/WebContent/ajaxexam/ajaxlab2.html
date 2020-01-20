@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>주소와 위도경도 변환 서비스</title>
+</head>
+<body>
+<h1>주소와 위도,변환 서비스</h1>
+<hr>
+
+<button id="input" onclick="callPrompt();">주소 입력하려면 누르세요.</button>
+
+<h2></h2>
+<!-- 아이디는 인코딩 하지 않는다. -->
+<script>
+	
+	var request;
+	var key_name="AIzaSyD8k2DWC_7yFHCrH6LDR3RfITsmWMEqC8c";
+	var queryString='';
+	var geoCoding="https://maps.googleapis.com/maps/api/geocode/json?";
+	
+	var address='';
+	var url='';
+	var Latitude,Longitude
+	var h2dom=document.getElementsByTagName("h2")[0];
+	
+	window.onload=function(){
+		request=new XMLHttpRequest();
+	};
+	
+	//DOMContentLoaded : DOM 객체가 다 생성되는 이벤트 -> Load이벤트보다 빠르다.
+	
+	function callPrompt(){
+		address=window.prompt("주소를 입력하세요.");
+		queryString='address='+encodeURIComponent(address)+'&key='+key_name;
+		url=geoCoding+queryString;
+		console.log(url);
+		request.onload=function(event){
+			//서버한테 응답받으면 로드 이벤트 발생
+			if(request.status==200){
+				console.log("Done");
+				var str=request.responseText;
+				var obj = JSON.parse(str);
+				console.log(obj.results[0].geometry.location);
+				Latitude=obj.results[0].geometry.location.lat;
+				Longitude=obj.results[0].geometry.location.lng;
+				console.log(Latitude);
+				var latMinute,latDegree,latSecond;
+				var lngMinute,lngDegree,lngSecond;
+				var isNorth,isEast;
+				//각각 위도 몇도 몇분 몇초
+				//경도 몇도 몇분 몇초
+				//북위 남위 동경 서경 여부
+				isNorth=Latitude>=0 ? "북위" : "남위";
+				isEast=Longitude>=0 ? "동경" : "서경";
+				Latitude=Math.abs(Latitude);
+				Longitude=Math.abs(Longitude);
+				//남위, 서경의 경우 마이너스가 붙어서 절댓값으로 바꿔줘야 함.
+				latMinute=Math.floor(Latitude);
+				lngMinute=Math.floor(Longitude);
+				latDegree=Math.floor((Math.floor((Latitude-latMinute)*100)*60)/100);
+				lngDegree=Math.floor((Math.floor((Longitude-lngMinute)*100)*60)/100);
+				latSecond=Math.floor(((10000*Latitude-100*Math.floor(100*Latitude))*60)/100);
+				lngSecond=Math.floor(((10000*Longitude-100*Math.floor(100*Longitude))*60)/100);
+				
+				if(latMinute<100 && latMinute>=10) latMinute="0"+latMinute;
+				if(lngMinute<100 && lngMinute>=10) lngMinute="0"+lngMinute;
+				if(latMinute<10) latMinute="00"+latMinute;
+				if(lngMinute<10) lngMinute="00"+lngMinute;
+				if(latDegree<10) latDegree="0"+latDegree;
+				if(lngDegree<10) lngDegree="0"+lngDegree;
+				if(latSecond<10) latSecond="0"+latSecond;
+				if(lngSecond<10) lngSecond="0"+lngSecond;
+				
+				h2dom.innerHTML="Your position is : "+address+"<br>Latitude : "+isNorth+" "+latMinute+"-"
+						+latDegree+"-"+latSecond+"<br>"+"Longitude : "+isEast+" "+lngMinute+"-"
+						+lngDegree+"-"+lngSecond;
+				console.log(h2dom.innterHTML);
+			}
+		};
+		request.open('GET',url,true);
+		request.send();
+		
+	}
+	
+	
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>강의실 예약 서비스</title>
+<script type="text/javascript">
+    function inputTimeColon(time) {
+
+        // 먼저 기존에 들어가 있을 수 있는 콜론(:)기호를 제거한다.
+        var replaceTime = time.value.replace(/\:/g, "");
+
+        // 글자수가 4 ~ 5개 사이일때만 동작하게 고정한다.
+        if(replaceTime.length >= 4 && replaceTime.length < 5) {
+
+            // 시간을 추출
+            var hours = replaceTime.substring(0, 2);
+
+            // 분을 추출
+            var minute = replaceTime.substring(2, 4);
+
+            // 시간은 24:00를 넘길 수 없게 세팅
+            if(hours + minute > 2400) {
+                alert("시간은 24시를 넘길 수 없습니다.");
+                time.value = "24:00";
+                return false;
+            }
+
+            // 분은 60분을 넘길 수 없게 세팅
+            if(minute > 60) {
+                alert("분은 60분을 넘길 수 없습니다.");
+                time.value = hours + ":00";
+                return false;
+            }
+
+            // 콜론을 넣어 시간을 완성하고 반환한다.
+            time.value = hours + ":" + minute;
+        }
+    }
+</script>
+</head>
+<body>
+<form action="/sedu/reservation" method="post">
+<h1>강의실 예약 서비스</h1>
+<hr style="height : 2px; color : gray;">
+<label>예약자명 : </label>
+<input type="text" placeholder="이름을 입력하세요." name="user_name" required><br>
+<label>비밀번호 : </label>
+<input type="password" placeholder="비밀번호를 입력하세요." name="passwd" required><br>
+<label>강의실 선택 : </label>
+<input type="radio" name="room" value="오일러" required>오일러
+<input type="radio" name="room" value="가우스" required>가우스
+<input type="radio" name="room" value="뉴턴" required>뉴턴
+<input type="radio" name="room" value="파스칼" required>파스칼
+<input type="radio" name="room" value="페르마" required>페르마
+<br>
+<label>추가요청 사항</label>
+<input type="checkbox" name="additional" value="다과">다과
+<input type="checkbox" name="additional" value="커피">커피
+<input type="checkbox" name="additional" value="홍차">홍차
+<input type="checkbox" name="additional" value="율무차">율무차
+<input type="checkbox" name="additional" value="난방">난방
+<br>
+<label>예약 날짜</label>
+<input type="date" placeholder="yyyy-mm-dd" name="gdate" min="2020-01-17" max="2020-12-31">
+<label>예약 시간</label>
+<input type="time" name="gtime" value="00:00" onKeyup="inputTimeColon(this);" maxlength="5" style="text-align:center;width:150px;">
+<br>
+날짜는 2020년 12월 31일까지만 예약할 수 있습니다.
+<br>
+<input type="submit" value="보내기">
+<input type="reset" value="다시 작성하기">
+<br>
+</form>
+</body>
+</html>

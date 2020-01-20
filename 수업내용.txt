@@ -975,12 +975,12 @@ Servlet - JSP - Spring - Mybatis - D3.js(웹 기반 시각화) - 1day 게시판 
 
 [ Oracle 설치 ]
 
-
+  DQL --> DML  --> DDL
   CRUD
-  Create
-  Read
-  Update
-  Delete
+  Create : INSERT 명령어
+  Read : SELECT 명령어(DQL)
+  Update : UPDATE 명령어
+  Delete : DELETE 명령어
 
   관리자계정(system) 암호 : manager
 
@@ -994,46 +994,67 @@ Servlet - JSP - Spring - Mybatis - D3.js(웹 기반 시각화) - 1day 게시판 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 (1) sqlplus 라는 명령으로 오라클 사용하기 
 cmd 창을 기동시킨다.
 sqlplus 
 [ scott 계정 생성 ]
 SQL> @C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
 SQL> alter user scott identified by tiger;
+SQL> select user from dual;  // scott 이라고 출력될 거임
+SQL> select * from tab;        // scott 계정이 보유하고 있는 테이블 리스트
 SQL> connect system/manager
 
 [ hr 계정 락(lock) 풀기 ]
-alter user hr account unlock;
-alter user hr identified by hr;
+SQL> alter user hr account unlock;
+SQL> alter user hr identified by hr;
+SQL> connect hr/hr
 
 [ jdbctest 계정 만들기 : JDBC 수업시간에 사용 ]
-create user jdbctest identified by jdbctest;
-grant connect, resource to jdbctest;
+SQL> create user jdbctest identified by jdbctest;
+SQL> grant connect, resource to jdbctest;
 
 
+SQL> alter user scott account unlock;
 
 
+  [ SELECT 명령어 ]
 
+  select 추출하려는컬럼명리스트 또는 *
+  from 테이블이름
+  [where 행의조건식]
+  [order by 컬럼명(별칭,식) desc|asc]
+ 
+  
+  select * from tab;
 
+  select * from emp;
+  select *
+  from emp; 
+  select ename, sal from emp; 
+  select sysdate from dual;
+  select 100+200 from dual; // 1행 1열 ('x')
 
+  select ename, sal 
+  from emp
+  where sal > 2000
+  order by sal desc;
+
+  select ename, sal 
+  from emp
+  where sal > 2000
+  order by sal [asc];
+
+  where num = 10
+  where name = '김정현'
+  where hiredate = '1997/10/21'
+  where name = 'KIM'
+  where name = 'kim'
+  where name like '김%'   // 0개 이상의 모든 문자(들) - meta character
+  where addr like '%강남구%'   // 0개 이상의 모든 문자(들) - meta character
+  where addr like '강남구%' 
+  where addr like '%강남구'
+  where name like '김__'  // 임의의 문자 1개
+  where ssn like '______-2______' 
 
 
 
@@ -1066,6 +1087,117 @@ grant connect, resource to jdbctest;
 
 
 
+ 컬럼들을 결합하는 연산자 -  ||
+
+select 컬럼1 || 컬럼2 "별칭"
+
+select concat(컬럼1, 컬럼2) "별칭"
+
+select 컬럼1 || ', ' || 컬럼2 "별칭"
+
+
+  21번까지만 문제 풀고 제출하세요.
+
+  rr/mm/dd  - 기본설정 날짜 포맷
+
+  yy/mm/dd
+   
+
+  select to_char(sysdate,'yyyy"년"') 
+  from dual;
+
+  select to_char(sysdate,'mm"월" dd"일" day') 
+  from dual;
+
+  select to_char(sysdate,'yyyy"년" mm"월" dd"일" hh"시" mi"분" ss"초"') 
+  from dual;
+
+  sal * 12 + comm
+  sal * 12 + nvl(comm, 0)
+
+  select enmae, sal, nvl(to_char(comm), '없음') from emp;
+  select enmae, sal, nvl(comm, 0) from emp;
+
+  select enmae, sal, nvl2(comm, '정해짐', '미정') from emp;
+
+  decode(대상식, 비교값1, 처리식1, 비교값2, 처리식2, ...., 처리식n)
+  switch(대상식, 비교값1, 처리식1, 비교값2, 처리식2, ...., 처리식n)
+
+  @C:\교육자료\실습문서\scott_create_table.sql
+  @c:/교육자료/실습문서/scott_create_table.sql
+
+
+  SELECT MAX(SAL), MIN(*), SUM(ALL SAL), AVG(*), COUNT(SAL) FROM EMP
+
+  SELECT EMPNO, ENAME FROM EMP
+
+  SELECT EMPNO, ENAME, SAL, COMM FROM EMP
+
+  SELECT ENAME, MAX(SAL) FROM EMP  --> 오류 발생
+
+  SELECT COUNT(COMM), COUNT(*) FROM EMP
+
+  SELECT *
+  FROM EMP
+  WHERE SAL > (전체 월급의 평균을 구하는 SELECT명령)
+
+  SELECT *
+  FROM EMP
+  WHERE SAL > (SELECT AVG(SAL) FROM EMP)
+
+
+
+  select nvl2(deptno, deptno||'번 부서', '미정') 부서정보, count(*)||'명' 직원명수
+from emp
+group by deptno;
+
+
+select decode(deptno, 10, '10번 부서', 20, '20번 부서', 30, '30번 부서', '미정') 부서정보, count(*)||'명' 직원명수
+from emp
+group by deptno;
+
+
+select case deptno 
+         when 10 then '10번 부서' 
+         when 20 then '20번 부서' 
+         when 30 then '30번 부서' 
+         else '미정'end 부서정보, count(*)||'명' 직원명수
+from emp
+group by deptno;
+
+select case  
+         when deptno = 10 then '10번 부서' 
+         when deptno = 20 then '20번 부서' 
+         when deptno = 30 then '30번부서' 
+         else '미정'end 부서정보, count(*)||'명' 직원명수
+from emp
+group by deptno;
+
+
+select * from emp, dept;
+
+select * from emp, dept where emp.deptno = dept.deptno;
+
+select * from emp, dept where emp.deptno = dept.deptno(+); -- left outer
+
+select * from emp, dept where emp.deptno(+) = dept.deptno; -- right outer
+
+select * from emp, dept where emp.deptno(+) = dept.deptno(+); -- 지원(x)
+
+
+select * from emp, dept where emp.deptno = dept.deptno(+)
+union
+select * from emp, dept where emp.deptno(+) = dept.deptno;
+
+select * from salgrade;
+
+select * 
+from emp, salgrade 
+where emp.sal between salgrade.losal and salgrade.hisal;
+
+select * 
+from emp e, salgrade s 
+where e.sal between s.losal and s.hisal;
 
 
 
@@ -1074,9 +1206,587 @@ grant connect, resource to jdbctest;
 
 
 
+ select  e.ename, m.ename
+ from emp e, emp m
+ where e.mgr = m.empno;
+ 
+ 
+ select  e.ename, nvl(m.ename, '없음')
+ from emp e, emp m
+ where e.mgr = m.empno(+);
+
+ (1)
+  select
+  from 테이블1 join 테이블2 using (조인에사용할컬럼명)
+  where 행에 대한 조건
+
+ (2)
+  select
+  from 테이블1 join 테이블2 on (조인 조건식)
+  where 행에 대한 조건
+
+ (3)
+  select
+  from 테이블1 left join 테이블2 using (조인에사용할컬럼명) 또는 on (조인 조건식)
+  where 행에 대한 조건
+
+ (4)
+  select
+  from 테이블1 right join 테이블2 using (조인에사용할컬럼명) 또는 on (조인 조건식)
+  where 행에 대한 조건
+
+ (5)
+  select
+  from 테이블1 full join 테이블2 using (조인에사용할컬럼명) 또는 on (조인 조건식)
+  where 행에 대한 조건
+
+ select 컬럼리스트|*
+ from 테이블명
+ where 컬럼 = 정해진값|이미알고있는값
+
+ select 컬럼리스트|*
+ from 테이블명
+ where 컬럼 = (select 명령)
+
+ select *
+ from emp
+ where sal > (1200);
+
+ select *
+ from emp
+ where sal >ALL (1200,2975);
+
+              >ALL, >ANY, <ALL, <ANY, IN(NOT IN), =ANY
+
+              >, <, =, !=
+
+           컬럼   < ANY (10, 5, 7, 6)
+           컬럼   < ALL (10, 5, 7, 6)
+
+
+
+
+  select * from emp where 1 <> 1
+
+  비어있는 resultset
+
+[ 오라클의 휴지통 기능 ]
+
+휴지통에 들은 테이블을 조회.
+SQL> show recyclebin;
+
+휴지통의 모든 내용이 비워집니다.
+SQL> purge recyclebin;
+
+삭제된 테이블을 되살리고 싶다면
+SQL> flashback table 테이블명 to before drop;
+
+특정 테이블을 휴지통에 남기지 않고 모두 삭제하려면..
+SQL> drop table 테이블명 purge;
+
+purge문 없이 그냥 drop 한 후에는
+SQL> purge table 테이블명;
+
+select * 
+from user_constraints 
+where table_name = '테이블명(대문자)';
+
+
+SELECT A.TABLE_NAME, B.COLUMN_NAME, 
+           A.CONSTRAINT_NAME, A.CONSTRAINT_TYPE, 
+           A.SEARCH_CONDITION
+FROM USER_CONSTRAINTS A, USER_CONS_COLUMNS B
+WHERE A.CONSTRAINT_NAME = B.CONSTRAINT_NAME
+AND A.TABLE_NAME = '테이블명(대문자)'
+AND A.CONSTRAINT_TYPE = 'P';
+
+ [ JDBC(Java DataBase Connectivity) 프로그래밍 ]
+ - Java API
+    java.sql
+    javax.sql
+ - DBMS 에 무관하게 프로그램을 개발할 수 있다.
+ - 구성 : JDBC API   + JDBC Driver
+           (인터페이스)  (인터페이스들의 구현클래스)
+            DBMS에무관  DBMS에 따라 달라진다.
+   팩토리메서드 : 객체 생성을 대신 해주는 일반 메서드
+
+   SQL 명령을 수행시키는 기능을 지원하는 객체 - Statement
+                                    executeQuery():ResultSet - SELECT
+		          executeUpdate():int - 그외의 모든 SQL	
+   Statement stmt = Connection 객체의 createStatement();
+ - JDBC 프로그램의 구현 순서
+    1. JDBC Driver 로딩 - Class.forName()
+    2. DBMS 에 접속 - DriverManager.getConnection("jdbc url", "계정", "암호")
+    3. Statement/PreparedStatement 객체 생성
+    4. 처리하려는 기능에 따라서 SQL 문을 전달하고 수행시킨다.
+    5. 결과 처리
+        ResultSet 객체
+        next(), getXXX()
+        SELECT 명령의 수행 결과 여부에 관계없이 ResultSet 객체는 리턴
+    6. 종료시 close() 필수
+
+  JDBC 프로그램 패키지 : jdbcsrc
+  ReadVisitor
+
+
+
+   [ URL ]
+   URL - 인터넷 사이트(웹 사이트, 웹 페이지)의 주소 문자열
+           -------------------------------------------> http URL
+            Uniform Resource Locator의 약어로 어떤 자원의 위치를 알리는
+            단일화(규격화)된 형식의 문자열
+
+            프로토콜명:...........................
+
+            프로토콜 : 통신 규약
+
+            	http(s)://www.naver.com/
+	http://www.html5test.com/
+	http://www.w3schools.com/
+	http://www.w3.org/
+
+            jdbc url : 어떤 DBMS를 어떤 JDBC Driver를 통해서 접속할 것인지 하나의
+                           문자열로 구성
+
+         	jdbc:DBMS이름:JDBCDriver이름:Driver에서원하는대로
+             jdbc:oracle:thin:@DBMS네트워크주소:리스너포트번호:SID
+
+
+
+
+   DatabaseMetaData - 접속된 DB에 대한 정보, JDBC드라이버에 대한 정보 추출/채크
+   ResultSetMetaData - SELECT 명령을 수행하고 생성된 ResultSet 객체에 대한 정보
+                                 를 추출
+
+   pid - 00004
+   classid - 20
+   name - 짱구는 못말려
+   balance - 100
+   price - 5000
+
+
+
+   00004 20 "짱구는 못말려" 100 5000
+   00005 20 "겨울 왕국" 150 8000
+
+
+   필답평가 시간 : 2시 10분~2시 30분
+
+   수행평가 시간 : 2시 30분~4시
+                       제출시... sql 파일과 java 파일을 교육생이름.zip 으로 압축해서
+                       올리세요.
+                       구현을 완료하지 못해도 4시까지는 제출해 주세요.
+                       Prob.java 는 강사컴퓨터의 수행평가 폴더에서 복사하여 구현합니다.
+
+   -------> 4시 10분 부터 수업 시작
+
+
+   10. 'Den'과 동일 부서에서 근무하는 직원들의 최대월급, 최소월급 그리고 월급의 평균을 구하시오.
+ 단, 평균값을 출력할때 십단위까지만 출력하시오.
+
+
+ [ Web 프로그래밍 기술 학습 ]
+
+  - 프로그램이 실행하는 위치
+     Web 서버 프로그래밍 - Web 클라이언트(브라우저)가 요청했을 때 서버에서 실행
+		       Servlet, JSP, Spring, Mybstis
+     Web 클라이언트 프로그래밍 - Web 클라이언트가 요청했을 때 클라이언트에서 실행
+		       HTML5, CSS3, JavaScript, jQuery, Ajax
+
+  - 테스트 환경
+     Web 클라이언트 역할의 프로그램 : 브라우저(크롬)
+     Web 서버 역할의 프로그램 : Servlet, JSP를 처리할 수 있는 서버
+                                        WAS(Web Application Server)
+                                        ----> Tomcat 9.0
+				http://tomcat.apache.org/
+     Eclipse - Web Project - edu
+
+                   imsi.html
+
+     http://localhost:8000/edu/imsi.html   --> URL 문자열
+                                   --------------
+                                          URI
+   
+
+ [ web 프로그래밍 학습 동안의 아침에 해야할 시스템 준비 ]
+
+ (1) 이클립스를 기동한다.
+ (2) 톰캣을 기동한다.
+
+  http://localhost:8000/edu/htmlexam/exam1.html
+
+  gif, jpg(jpeg), png
+
+  http://localhost:8000/edu/htmlexam/...?gname=unico
+                                                            ------------
+				        Query String
+
+
+  http://localhost:8000/edu/htmlexam/...?gname=%EA%B0%80%EB%82%98%EB%8B%A4
+  http://localhost:8000/edu/htmlexam/...?gname=%EA%B0%80&gage=10
+  http://localhost:8000/edu/htmlexam/...?gname=%EA%B0%80+ABC123&gage=10
+
+  Query String : Web Client 가 Web Server 에게 정보(페이지)를 요청할 때 함께 전달
+                      가능한 name 과 value 구성되는 문자열
+                      W3C 가 정해놓기를 ---> Query String Encoding 규칙
+                      (1) name=value 로 구성되어야 한다.
+                      (2) 여러개의 name=value를 전달하는 경우에는 & 기호로 분리한다.
+                      (3) 영문과 숫자 그리고 일부 특수문자를 제외하고는 %기호와 코드 값
+                            으로 전달된다.
+                      (4) 공백 + 기호로 전달된다.
+
+http://localhost:8000/edu/htmlexam/...?gname=%EA%B0%80&gage=1&gdate=2020-04-05
+
+
+http://localhost:8000/edu/htmlexam/...?gname=%EA%B0%80&gage=5&gdate=2020-01-06&gender=on&food=on&food=on&food=on
+http://localhost:8000/edu/htmlexam/...?gname=%EA%B0%80&gage=3&gdate=2020-02-01&gender=female&food=%EB%96%A1%EB%B3%B6%EC%9D%B4&food=%ED%8A%80%EA%B9%80&food=%EA%B9%80%EB%B0%A5
+
+http://html5test.com/
+
+
+
+       
+  
+
+  <form method=""  action="...">
+
+
+  파일명 : productlog.html
+
+
+   HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.0 -> HTML 4.01 -> HTML 5
+                                                                          XHTML 1.0
+
+
+   cssexam
+
+   [ 전역적인 스타일 설정 ]
+
+   - <head> 태그안에 <style> 태그를 사용한다.
+   - CSS 정의 방법
+
+	CSS선택자 {
+	     CSS속성명 : 속성값;
+	     CSS속성명 : 속성값;
+	     CSS속성명 : 속성값;
+                  CSS속성명 : 속성값;
+	}
+
+   [ CSS 선택자 ]
+
+   	- 전체 선택자
+             - 태그 선택자
+	- class 선택자
+	- id 선택자
+	- 자식 선택자
+	- 자손 선택자
+	- 첫번째 동생 선택자  
+	- 동생들 선택자
+             - 속성 선택자
+
+
+    CSS 를 다르게 적용하려는 태그(들) 또는 태그의 컨텐트에 정의하는 용도의 태그들
+    <div> : 여러 태그들을 묶거나 또는 태그에 대하여 CSS 속성을 적용할 때
+    <span> : 컨텐트의 일부분에 대하여 CSS 속성을 적용할 때
+
+
+
+
+
+
+
+
+   img[src]
+   img[src=duke.png]
+   img[src$=png]
+
+   E:nth-child(n)
+ 	부모의 n번째 자식이면서 E 태그
+
+   E:nth-of-type(n)
+	부모의 E 태그에 해당하는 자식 태그중 n번째
+
+ 
+  http://unico2013.dothome.co.kr/resweb/exam3.html
+
+   display : none, block, inline, inline-block
+
+
+
+  [ JavaScript 구문 ]
+  1. JavaScript 코드 작성 방법
+  2.데이터타입과 변수선언
+    ---------
+       숫자,문자열타입, 논리타입, 객체타입(배열타입), undefined 타입
+       var 변수명;
+       var 변수명=초기값;
+       	var v1;
+	v1 = 10; // number
+	v1 = '10'; // string
+	v1 = true; // boolean
+             -----------------------------> typeof 연산자가 필요
+  3. 연산자 (Java와 85% 비슷) ---> ==, ===, !=, !==, &&, ||, delete, typeof ..
+  4. 제어문 : for, foreach, while, do ~ while, break, continue
+  5. 함수의 정의와 활용
+  6. 객체의 생성과 활용(생성자 함수, 객체리터럴)
+  7. 예외처리
+  8. API
+      표준API : 함수, 생성자 함수
+      BOM(Browser Object Model) API : 브라우저가 자바스크립트에게 제공하는
+                                                    것으로 내장 객체 형식
+      DOM(Document Object Model) API                                  
+      HTML5 API - Canvas,WebStorage,drag&drop,geolocation
+
+
+
+
+
+
+
+ [ 웹페이지를 디자인 할 때 ]
+  
+ (1) PC만
+ (2) 모바일만
+ (3) PC, 모바일 : 반응형 웹디자인 - www.w3schools.com
+                      PC 디자인, 모바일 디자인 분리 - www.naver.com
+                                                              m.naver.com
+
+
+
+   for(변수선언 : 컬렉션 또는 배열 객체)
+
+   for(변수선언 in 배열 객체 또는 일반 객체)
+
+     비교식1 && 비교식2 
+
+     비교식1 || 비교식2 
+
+    -------------------------> && 와 || 를 이용해서 if문을 대신하여 구현 가능
+
+	if( a>b )
+	    System.out.println(a);
+
+             if( a>b )
+	    window.alert(a);
+             ----> a>b && window.alert(a);
+                      a<=b || window.alert(a);
+
+
+
+   window.alert() 	- 경고 메시지를 출력하는 서브창을 디스플레이
+   window.prompt() - 사용로 부터 데이터를 입력받는 서브창을 디스플레이
+   window.confirm() - 확인받는 목적으로 사용되는 API 로서
+                               yes/no 형식의 데이터 입력받는 서브창을 디스플레이
+
+
+   오늘은
+   화    요일
+   입니다.
+
+    오늘은 화요일 입니다.
+
+   오늘은<br>
+   화요일<br>
+   입니다.<br>
+   <pre>
+   오늘은
+   화요일
+   입니다.
+   </pre>
+
+
+   [ 숫자 문자열을 숫자로 변경하는 방법 ]
+
+   num = num * 1;
+
+   num = Number(num);
+
+   num = parseInt(num);
+
+
+  [ 배열 ]
+  (1) 다양한 타입의 데이터를 하나의 배열에 구성 가능
+  (2) 배열 생성 후에도 크기 변경 가능
+
+   - 생성
+     - 배열 리터럴
+     var a1 = [ ];
+     var a2 = [ 10, 20, 30 ];                              a2[10] = 100; 
+     var a3 = [ true, '가나다', 100 ]
+     a1.length
+     a2.length
+     a3.length
+     a3[1]
+
+     - 표준 API(Array 라는 생성자 함수를 이용)
+     var a4 = new Array();
+     var a5 = new Array(10); // 배열의 크기
+     var a55 = new Array('abc');
+     var a6 = new Array(10,20);
+     var a7 = new Array(true, 3.5, 'aaa', 'aa');
+   
+
+    var a = [ 10, 3, 7, 20, 6 ];
+    a.sort() --> [ 10, 20, 3, 6, 7 ]
+
+          [ 3, 6, 7, 10, 20 ]
+
+
+           
+    함수 : 수행 문장들을 담고 있는 호출 가능 모듈, 단독으로 호출 가능
+    메서드 : 수행 문장들을 담고 있는 호출 가능 모듈, 객체를 통해서만 호출 가능
+               객체의 멤버 정의되는 함수
+    전역코드 : <script>수행문장들...</script>
+
+    [ 명시적(선언적) 함수 정의 ]
+
+     function 함수이름([매개변수 선언..]) {
+
+
+     }
+
+    [ 리터럴(표현식) 방식(익명) 함수 정의 ]
+
+     function([매개변수 선언..]) {
+
+
+     }([아규먼트..]);   
+
+     함수(function([매개변수 선언..]) {
+
+
+     });
+
+     var 함수명 = function([매개변수 선언..]) {
+
+
+     };
+
+     함수명([아규먼트..]);
+
+     var 함수명2 = 함수명;
+
+     함수명2([아규먼트..]);
    
 
 
+     obj.속성명(r-value, l-value), obj['속성명']
+     obj.속성명()
+
+ BOM - window, document, location, history, navigator, screen
+
+
+ location.href  :  페이지 이동을 구현하고자 할 때
+ location.reload()  : 현재 페이지를 재요청
+
+ navigator.userAgent : 이 페이지를 랜더링하고 있는 클라이언트 머신과 
+                                브라우저 정보를 하나의 문자열로 추출
+
+ DOM(Document Object Model) 
+ 브라우저의 HTML 파서가 서버로 부터 전달받은 HTML 문서의 내용을 파싱하고
+ 랜더링할 때 인식된 HTML 태그, 속성 그리고 텍스트로 구성된 컨텐츠를 하나하나
+ JavaScript 객체로 생성한다. 이 때 만들어지는 DOM 객체들(Element 객체, Text
+ 객체) 부모 자식 관계를 유지해서 트리 구조를 형성한다.
+ --> JavaScript 코드로 HTML 태그나 속성 그리고 컨텐츠를 읽거나 변경할 수
+       있게 지원해서 동적인 웹 페이지를 생성
+
+ (1) 필요한 태그를 찾는 방법
+	document.getElementsByTagName("태그명") : NodeList
+             document.getElementById("태그의id속성의값") : Node
+	document.getElementsByClassName("태그의class속성값") : NodeList
+
+	document.querySelector("CSS선택자") : Node
+	document.querySelectorAll("CSS선택자") : NodeList
+
+ (2) 태그의 내용이나 속성을 읽고 변경하는 방법, 삭제하는 방법
+
+	찾은Element객체.innerHTML
+	찾은Element객체.textContent
+	찾은Element객체.getAttribute("속성명")
+	찾은Element객체.setAttribute("속성명", 속성값)
+	찾은Element객체.removeAttribute("속성명")
+	찾은Element객체.속성명
+	찾은Element객체.속성명 = 속성값
+		:
+
+
+ (3) 태그에서 발생하는 이벤트 또는 브라우저 객체서 발생하는 이벤트(window)
+      에 대한 이벤트 핸들러 구현 방법
+
+      (1) 인라인 이벤트 모델
+	
+             <button onclick="코드">1</button>
+
+      (2) 전역적 이벤트 모델(고전 이벤트 모델)\
+	<button>2</button>
+
+	var dom = document.getElementsTagName("button")[0];
+             dom.onclick = function() { 코드 };
+             dom.onclick = null;
+
+      (3) 표준 이벤트 모델
+	<button>3</button>
+
+	var dom = document.getElementsTagName("button")[0];
+             dom.addEventListener("click", function() { 코드 });
+	dom.removeEventListener("click", function() { 코드 });
+
+       
+       이벤트 : 웹 페이지상에서 마우스, 키보드 등을 통해 발생하는 액션
+                  웹 브라우저에서 자동으로 발생하는 액션
+       이벤트 핸들러(리스너) : 이벤트가 발생했을 때 수행되는 기능을 구현한 함수
+       이벤트 타겟 : 이벤트가 발생한 대상 DOM 객체
+                        ((1)this, (2) 핸들러에 매개변수(e)를 하나 정의한 후 : e.target)
+
+
+     data-xxx  :  사용자가 필요에 의해 태그에 정의하는 속성
+
+     [ 디폴트 이벤트 핸들러 ]
+
+     HTML 태그에 디폴트로 등록있는 이벤트 핸들러를 의미한다.
+     태그에 따라서는 눈에 띄는 디폴트 이벤트 핸들러 가지고 있다.
+     <a> : click 이벤트에 대한 핸들러를 내장 하고 있다.
+     <form> : submit 이벤트에 대한 핸들러를 내장하고 있다. 
+
+	<a href="http://java.sun.com/">...</a>
+	<a href="test.html">...</a>
+	<a href="#memo">...</a>                     #앵커명
+	<a href="test.html#subject">...</a>
+
+             <a name="memo></a> 
+
+      [ 이벤트 버블링 ]
+
+      특정 DOM 객체에서 이벤트가 발생하면 그 DOM 객체에 등록된 이벤트 핸들러만 
+      수행되는 것이 아니라 조상 DOM 객체에 등록된 핸들러도 수행된다.
+
+
+	<br>, <br/>
+
+ 
+ jstl-1.2.jar 파일을 WebContent/WEB-INF/lib
+ 에 붙여넣는다.
+
+
+  [ Query String (쿼리 문자열 ) ]
+  웹 클라이언트에서 웹 서버에 정보를 요청할 때 추가로 전달하는 문자열
+  이 문자열을 정해 규칙으로 구성되어 전달되어야 하는데 이규칙을
+  url encoding 또는 query string encoding 규칙이라 한다.
+
+  (1) 모든 데이터들은 name=value 형식이어야 한다.
+  (2) 여러개의 name=value쌍을 전달할 때는 & 기호로 구분한다.
+  (3) 공백은 + 문자로 변환되어 전달된다.
+  (4) 영문과 숫자 그리고 일부 특수문자를 제외하고 % 기호와 함께 
+        16진수 코드값으로 전달되어야 한다.
+
+
+https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8
+                               &query=ABCabc+123%EA%B0%80%EB%82%98%EB%8B%A4
+
+
+	id=ajaxtest&passwd=12345
+	id=%EA%B0%80%EB%82%98%EB%8B%A4&passwd=12345
+	id=100%20200&passwd=12345
 
 
 
@@ -1084,8 +1794,192 @@ grant connect, resource to jdbctest;
 
 
 
-		
 
 
 
 
+
+
+
+
+
+
+
+ Web Client : HTML5, CSS3, JavaScript   ---> edu
+ Web Server : Servlet, JSP, (JDBC), Spring FW, MyBatis FW
+                   (Junit FW, Log4J) - Java    ---> sedu
+
+
+  http://localhost:8000/sedu/first.jsp?gname=듀크
+  http://localhost:8000/sedu/first.jsp?gname=또치
+  http://localhost:8000/sedu/firstone
+  http://localhost:8000/sedu/firstone?gname=고길동
+  http://localhost:8000/sedu/firstone?gname=둘리
+
+ [ Servlet ]
+ - 1998년 가을에 발표된 기술
+    CGI(Common Gateway Interface)-웹의 표준, 구현언어 투명성
+    ---> Fast CGI
+    ---> Servlet
+ - Server Side Applet(Applet : 웹 브라우저에서 싱행되는 Java 프로그램)
+ - 구현상의 특징
+   (1) HttpServlet 을 상속해야 한다.
+   (2) main() 구현하지 않는다. (main() 메서드를 담고 있는 메인 클래스는 톰캣이 내장)
+   (3) 수행하는 동안 호출되는 메서드가 정해져 있는데
+        이 때 호출되는 메서드는 init(), service(), destory(), doGet(), doPost() 등이다.
+        하여 이 메서드들을 선택적으로 오버라이딩해서 구현한다.
+   (4) 서블릿에서 수행 결과를 출력할 때
+        - 요청해온 브라우저로의 출력(응답) - HttpServletResponse 의 getWriter() 를
+                                                     호출해서 클라이언트로의 출력 스트림 객체 생성
+                                                     해서 출력
+        - 표준 출력 : System.out.println() - 톰캣서버의 콘솔창에 출력
+    (5) 서블릿이 수행하는데 필요한 데이터를 요청 보내오는 클라이언트로 부터 전달받을 수
+         있다. 이 때 전달받는 데이터를 쿼리 문자열이라 한다.
+	HttpServletRequest 의 getParameter():String
+             또는 getParameterValues():String[]  를 사용한다.          
+ - 수행상의 특징
+    (1) 서블릿을 요청할 때는 "/컨텍스트루트명/서블릿의매핑명" 형식의 URI 를 사용한다.
+    (2) 서블릿의 요청은 
+       - 서블릿을 요청하는 URL 문자열을 브라우저의 주소 필드에 입력해서 직접 요청:GET
+       - <a> 태그로 요청:GET
+       - <form> 태그를 통해서 요청:GET/POST
+    (3) 서블릿 객체는 한 번 생성되는 서버 종료되거나 컨텍스트가 리로드될때까지
+         객체 상태를 유지한다.
+    (4) 여러 클라이언트가 동일한 서블릿을 동시 요청하면 하나의 서블릿 객체를 공유해서
+         수행한다.
+    (5) 최초 요청시의 수행 흐름
+          init(),     service() -> doGet(),     destroy()     
+		          -> doPost()
+
+
+   core 패키지 : FlowServlet(/flow)
+                     MemberLocalServlet(/memberlocal) - GET
+	        QueryServlet(/query) - GET
+
+   http://localhost:8000/sedu/memberlocal
+
+   Web Server : Web 통신에서 서버역할을 수행하는 프로그램(Http Server)
+
+   Web Server + Application Server = Web Application Server = WAS
+   TOMCAT = WAS = 코요테(웹서버)+카탈리나(어플리케이션서버)   
+
+
+
+
+
+   http://localhost:8000/edu/query?p1=듀크&p2=24&p3=또치&p3=희동&p3=도우너
+
+   java 소스들은 core 패키지에 붙인다.
+   html 파일들은 WebContent 에 html 폴더를 생성하고 여기에 붙인다.
+
+
+  http://localhost:8000/sedu/querytest?
+  stname=%EB%93%80%ED%81%AC&pwd=1234&age=5&
+  gender=%EC%97%AC%EC%9E%90&
+  hobby=%ED%94%BC%EC%95%84%EB%85%B8&
+  hobby=%EC%88%98%EC%98%81&
+  hobby=%EB%8F%85%EC%84%9C&
+  hobby=%EA%B2%8C%EC%9E%84&
+  color=%EB%85%B8%EB%9E%91%EC%83%89&
+  food=%EB%9D%BC%EB%A9%B4&
+  food=%EB%83%89%EB%A9%B4&
+  food=%EC%A7%9C%EC%9E%A5%EB%A9%B4&
+  food=%ED%96%84%EB%B2%84%EA%B1%B0&
+  food=%EC%9C%A1%ED%9A%8C&
+  op=%EC%A7%91%EC%97%90+%EA%B0%80%EC%9E%90...%0D%0A%EC%A7%91%EC%97%90&
+  h_1=-%E3%85%85-&
+  h_2=%3D%E3%85%85%3D
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://unico2013.dothome.co.kr/resweb/bom/exam2.html
+
+
+
+
+  src = "http://70.12.115.160:8000/edu/images/xmas/....."
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyD8k2DWC_7yFHCrH6LDR3RfITsmWMEqC8c
+
+
+
+  name=duke&passwd=1234&age=&gender=female
+
+        	request.getParameter("name")   --> "duke"
+
+	request.getParameter("passwd")   --> "1234"
+
+	request.getParameter("age")   --> ""
+
+	request.getParameter("hobby")   --> null
+
+
+
+
+
+LocalDate ndate = LocalDate.now();
+DateTimeFormatter dateF = DateTimeFormatter.ofPattern(
+				"yyyy년 MM월 dd일");
+String date = ndate.format(dateF);
+
+
+String rdate = request.getParameter("rdate");
+LocalDate ndate = LocalDate.parse(rdare);
+DateTimeFormatter dateF = DateTimeFormatter.ofPattern(
+				"yyyy년 MM월 dd일");
+String date = ndate.format(dateF);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
