@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+
+	img{
+		width : 150px;
+		height : 150px;
+		box-shadow : 3px 3px 3px black;
+		border : 2px solid black;
+	}
+	
+	output{
+	
+		font-family : Times New Roman;
+		font-size : 40px;
+	
+	}
+	
+</style>
+<script>
+
+window.onload=function(){
+	
+	var request = new XMLHttpRequest();
+	var domImg = document.getElementsByTagName("img");
+	var imgClick = function(){
+		//console.log(this.name);
+		request.onload=function(event){
+			if(request.status==200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				var target = document.getElementsByTagName("output")[0];
+				console.log(obj);
+				target.innerHTML = obj['pid'];
+			}
+		}
+		request.open('GET',"http://localhost:8000/sedu/basket1?pid="+this.name,true);
+		request.send();
+	}
+	for(var i=0;i<domImg.length;i++){
+		domImg[i].onclick = imgClick;
+	}
+	
+}
+
+
+</script>
+
+</head>
+<body style="text-align : center;">
+<h1>무기의 세계에 오신 것을 환영합니다~</h1>
+<form action="/sedu/visitor" method="get">
+	<img src="/edu/images/0.png" name="p000">
+	<img src="/edu/images/1.png" name="p001">
+	<br>
+	<img src="/edu/images/2.png" name="p002">
+	<img src="/edu/images/3.png" name="p003">
+	<br>
+	<img src="/edu/images/4.png" name="p004">
+	<img src="/edu/images/5.png" name="p005">
+	<br>
+	<img src="/edu/images/6.png" name="p006">
+	<img src="/edu/images/7.png" name="p007">
+	<br>
+	<img src="/edu/images/8.png" name="p008">
+	<img src="/edu/images/9.png" name="p009">
+</form>
+<output></output>
+</body>
+</html>
