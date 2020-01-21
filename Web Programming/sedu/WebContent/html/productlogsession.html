@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	
+	#titleline{
+		width : 820px;
+		height : 60px;
+		background-color : #DEB887;
+		margin-bottom : 30px;
+		margin-left : auto;
+		margin-right : auto;
+		border : 3px solid #5F9EA0;
+		border-radius : 10px;
+	}
+	
+	img{
+		width : 150px;
+		height : 150px;
+		box-shadow : 3px 3px 3px black;
+		border : 2px solid black;
+	}
+	
+	output{
+	
+		font-family : Times New Roman;
+		font-size : 40px;
+	
+	}
+	#listline{
+	
+		width : 300px;
+		margin-top : 15px;
+		margin-left : auto;
+		margin-right : auto;
+		border : 3px solid #5F9EA0;
+		border-radius : 5px;
+		background-color : #DEB887;
+		text-align : center;
+	}
+	
+</style>
+<script>
+
+window.onload=function(){
+	
+	var request = new XMLHttpRequest();
+	var domImg = document.getElementsByTagName("img");
+	var domReset = document.getElementsByTagName("button")[0];
+	var target = document.getElementsByTagName("ul")[0];
+	var imgClick = function(){
+		//console.log(this.name);
+		request.onload=function(event){
+			if(request.status==200){
+				var str = request.responseText;
+				//console.log(str);
+				var obj = JSON.parse(str);
+				console.log(obj);
+				target.innerHTML = "";
+				for(var i=0;i<Object.keys(obj).length;i++){
+					if(obj['p00'+i]==0) continue;
+					if(i<9){
+						target.innerHTML+="<li>p00"+(i+1)+" 상품 "+obj['p00'+i]+"개</li>";
+					}
+					else if(i==9){
+						target.innerHTML+="<li>p010  상품 "+obj['p00'+i]+"개</li>";
+					}
+				}
+			}
+		};
+		request.open('GET',"http://localhost:8000/sedu/basket2?pid="+this.name,true);
+		request.send();
+		
+	};
+	for(var i=0;i<domImg.length;i++){
+		domImg[i].onclick = imgClick;
+	}
+	domReset.onclick = function(){
+		request.onload = function(){
+			target.innerHTML="상품이 모두 삭제되었습니다.";
+		};
+		request.open('GET',"http://localhost:8000/sedu/basket2?pid=reset",true);
+		request.send();
+	}
+	
+}
+
+
+</script>
+
+</head>
+<body style="text-align : center;">
+<h1>무기의 세계에 오신 것을 환영합니다~</h1>
+<div id="titleline"></div>
+<form action="/sedu/visitor" method="get">
+	<img src="/edu/images/0.png" name="p000">
+	<img src="/edu/images/1.png" name="p001">
+	<img src="/edu/images/2.png" name="p002">
+	<img src="/edu/images/3.png" name="p003">
+	<img src="/edu/images/4.png" name="p004">
+	<br>
+	<img src="/edu/images/5.png" name="p005">
+	<img src="/edu/images/6.png" name="p006">
+	<img src="/edu/images/7.png" name="p007">
+	<img src="/edu/images/8.png" name="p008">
+	<img src="/edu/images/9.png" name="p009">
+</form>
+<div id="listline">
+<h4>선택한 상품 리스트		<button>상품 지우기</button></h4>
+<ul></ul>
+</div>
+</body>
+</html>

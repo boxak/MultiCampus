@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+
+	img{
+		width : 150px;
+		height : 150px;
+		box-shadow : 3px 3px 3px black;
+		
+	}
+	
+</style>
+<script>
+window.onload=function(){
+	var dom = document.getElementsByTagName('img');
+	var request=new XMLHttpRequest();
+	console.log(dom);
+	var imgClick=function(){
+		//console.log("HERE");
+		
+		request.onload=function(event){
+			if(request.status==200){
+				var str=request.responseText;
+				var obj=JSON.parse(str);
+				var jsObj = JSON.parse(str);
+				//JSON문서를 JS에서 읽기 쉽게 해주는 객체
+				var output = "";				
+				for(var i in jsObj)
+					output += "<h2>"+ jsObj[i] +"</h2>";
+				alert(output);
+				document.body.innerHTML += output;
+			}
+		}
+		request.open('GET', 'localhost:8000/sedu/basket1', true);
+ 		request.send();
+	};
+	for(var i in dom){
+		dom[i].onclick=imgClick;
+	}
+}
+
+</script>
+
+</head>
+<body>
+<h1>무기의 세계에 오신 것을 환영합니다~</h1>
+<figure>
+	<img src="/edu/images/0.png" name="p000">
+	<img src="/edu/images/1.png" name="p001">
+	<br>
+	<img src="/edu/images/2.png" name="p002">
+	<img src="/edu/images/3.png" name="p003">
+	<br>
+	<img src="/edu/images/4.png" name="p004">
+	<img src="/edu/images/5.png" name="p005">
+	<br>
+	<img src="/edu/images/6.png" name="p006">
+	<img src="/edu/images/7.png" name="p007">
+	<br>
+	<img src="/edu/images/8.png" name="p008">
+	<img src="/edu/images/9.png" name="p009">
+</figure>
+</body>
+</html>
