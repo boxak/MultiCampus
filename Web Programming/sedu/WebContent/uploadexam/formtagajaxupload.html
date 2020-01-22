@@ -14,7 +14,8 @@
 <form id="f">
    파일<input type="file" name="theFile"  multiple><br>
   <input type="submit" value="업로드" 
-                     onclick="uploadAjax();return false;">
+                     onclick="uploadAjax();return false;"> <!-- uploadAjax에서 서버에 요청하므로 
+                     submit 타입의 기본적인 서버 요청을 해제시킨다. -->
 </form>
 <script>
 function uploadAjax() {
