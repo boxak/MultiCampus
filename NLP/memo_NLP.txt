@@ -1,9 +1,0 @@
-library(readr)
-DICT <- read_csv("DICT.csv", locale = locale())
-View(DICT)
-
-표제어 kword_id
-
-NNG NNP NR VV VA 
-
-단어 출현 빈도 그리고, 워드 클라우드 만들어보기
