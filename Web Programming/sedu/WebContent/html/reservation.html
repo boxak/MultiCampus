@@ -36,10 +36,11 @@
             time.value = hours + ":" + minute;
         }
     }
+    
 </script>
 </head>
 <body>
-<form action="/sedu/reservation" method="post">
+<form action="/sedu/jspexam/reservation.jsp" method="post">
 <h1>강의실 예약 서비스</h1>
 <hr style="height : 2px; color : gray;">
 <label>예약자명 : </label>
@@ -61,7 +62,7 @@
 <input type="checkbox" name="additional" value="난방">난방
 <br>
 <label>예약 날짜</label>
-<input type="date" placeholder="yyyy-mm-dd" name="gdate" min="2020-01-17" max="2020-12-31">
+<input type="date" placeholder="yyyy년 mm월 dd일" name="gdate" min="2020-01-17" max="2020-12-31">
 <label>예약 시간</label>
 <input type="time" name="gtime" value="00:00" onKeyup="inputTimeColon(this);" maxlength="5" style="text-align:center;width:150px;">
 <br>

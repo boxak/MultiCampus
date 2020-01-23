@@ -8,7 +8,7 @@
 <BODY>
 <% if(request.getParameter("type")==null || 
            request.getParameter("type").equals("admin") ){ %>
-  <jsp:forward page="admin_new.jsp">
+  <jsp:forward page="admin_new.jsp"> 
   	<jsp:param name="message" value="Hi! Administrator" />
   </jsp:forward>
 <% } else  {%>

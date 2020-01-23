@@ -23,7 +23,7 @@ getCreationTime() : <%=  new Date(session.getCreationTime())  %><br>
 getStatus() : <%=  response.getStatus() %><br>
 getBufferSize() : <%=  response.getBufferSize() %><br>
 getContentType() : <%=  response.getContentType() %>
-<H4>Web Application(/edu) 디렉토리의 파일 리스트 </H4>
+<H4>Web Application(/sedu) 디렉토리의 파일 리스트 </H4>
 <% 
 java.util.Set<String> list = application.getResourcePaths("/");
 if (list != null) {

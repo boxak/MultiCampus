@@ -1,0 +1,22 @@
+다음 기능의 JSP 소스를 생성한다.
+
+(1) 소스명 : go.jsp
+(2) 기능 : study라는 이름으로 전달되는 Query 문자열을 추출하고
+ 
+	javascript면 http://www.w3schools.com/js/default.asp로
+	dom이면 http://www.w3schools.com/js/js_htmldom.asp로
+	ajax이면 http://www.w3schools.com/xml/ajax_intro.asp로
+	json이면 http://www.w3schools.com/js/js_json_intro.asp로
+  
+             페이지를 이동한다.
+
+	jsp이면 gname이라는 이름으로 "unico" 를 전달하면서 first.jsp 로 
+             페이지를 이동한다.
+	html이면 first.html 로 페이지를 이동한다.
+	
+
+	<h2>study 라는 이름으로 전달된 쿼리가 존재하지 않습니다.</h2>
+
+	를 응답한다.
+
+(3) 제출 : go.jsp
