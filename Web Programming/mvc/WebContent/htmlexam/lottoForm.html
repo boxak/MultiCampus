@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>행운의 주인공은 바로 당신!</title>
+<style>
+	hr{
+	
+		width : 500px;
+	
+	}
+</style>
+<script>
+
+	window.onload = function(){
+		document.getElementById("inputnumber").focus();
+	}
+
+</script>
+</head>
+<body style="text-align : center;">
+<h1>행운의 주인공이 되어보세요!</h1>
+<hr>
+<form action="/mvc/lotto2" method="get">
+	<p>로또 번호를 맞춰 보세요!!!</p>
+	<hr>
+	1부터 6까지의 숫자를 입력하세요 : 
+	<input type="number" name="lotto_num" id="inputnumber">
+	<input type="image" src="https://t4.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/2gvj/image/1rcPpq7qiGz2L836296d_RZEqB8.jpg"
+	width="50px">
+</form>
+</body>
+</html>
