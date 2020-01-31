@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h1>${param.sname}님은 A등급입니다. 우수한 성적이시네요(^^)</h1>
-<br><br>
-<a href="<%= request.getHeader("referer") %>">성적 입력 화면으로</a>
+<h1>연산 요청 결과</h1>
+<hr>
+<h3>결과 : ${requestScope.result}</h3>
+<br>
+<a href="${header.referer}">입력 화면으로 돌아가기</a>
 </body>
 </html>

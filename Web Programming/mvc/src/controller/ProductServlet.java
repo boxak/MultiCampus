@@ -40,6 +40,9 @@ public class ProductServlet extends HttpServlet {
 				break;
 			case "p003" : vo.setCnt3(1);
 				break;
+			case "reset" : session.removeAttribute("product");
+				rd = request.getRequestDispatcher("/jspexam/response.jsp");
+				break;
 		}
 		
 		rd.forward(request, response);

@@ -35,7 +35,25 @@
 	</a>
 	<a href="http://localhost:8000/mvc/productservlet?pid=p003">
 		<img src="http://image.auction.co.kr/itemimage/12/76/e7/1276e7b366.jpg">
-	</a>
+	</a><br>
+	<button>장바구니 비우기</button>
 </form>
+<script>
+
+	var btn = document.getElementsByTagName("button")[0];
+	btn.onclick = function(){
+		var request = new XMLHttpRequest();
+		request.onload = function(){
+			if(request.status==200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				window.alert(obj["msg"]);
+			}
+		};
+		request.open('GET','http://localhost:8000/mvc/productservlet?pid=reset',true);
+		request.send();
+	};
+
+</script>
 </body>
 </html>
