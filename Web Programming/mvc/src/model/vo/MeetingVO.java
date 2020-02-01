@@ -31,16 +31,6 @@ public class MeetingVO {
 		this.title = title;
 	}
 	public void setMeetingDate(String meetingDate){
-		/*System.out.println("날짜 : "+meetingDate);
-		String pattern = "yyyy-MM-dd hh:mm";
-		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-		try {
-			Date date = sdf.parse(meetingDate);
-			this.meetingDate = sdf.format(date);
-		}
-		catch(ParseException e) {
-			e.printStackTrace();
-		}*/
 		this.meetingDate = meetingDate;
 	}
 	

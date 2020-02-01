@@ -47,7 +47,7 @@ public class MeetingServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("MeetingTable", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/jspexam/meetingView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jspexam/meetingView_jstl.jsp");
 		rd.forward(request, response);
 		
 	}
@@ -71,7 +71,7 @@ public class MeetingServlet extends HttpServlet {
 		List <MeetingVO> list = new ArrayList<>();
 		list = mjd.listAll();
 		request.setAttribute("MeetingTable", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/jspexam/meetingView.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/jspexam/meetingView_jstl.jsp");
 		rd.forward(request, response);
 	}
 
