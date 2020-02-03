@@ -127,7 +127,7 @@ public class MeetingJDBCDAO implements MeetingDAO{
 			System.out.println(e.getMessage());
 		}
 		try(Connection conn = DriverManager.getConnection
-				("jdbc:oracle:thin:@localhost:1521");
+				("jdbc:oracle:thin:@localhost:1521:xe");
 			PreparedStatement pstmt = conn.prepareStatement
 			("update meeting set name="+vo.getName()
 			+", title="+vo.getTitle()+", meetingDate="+vo.getMeetingDate()+
