@@ -27,39 +27,43 @@ public class NewsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action = request.getParameter("action");
+		String key = request.getParameter("key");
+		String searchType = "";
 		int id = 0;
 		if(request.getParameter("newsid")!=null) {
 			id = Integer.parseInt(request.getParameter("newsid"));
 		}
 		NewsDAO nd = new NewsDAO();
 		List<NewsVO> list = new ArrayList<>();
-		NewsVO vo = null;
 		if(action==null) {
 			list = nd.listAll();
 		}
-		else if(action.equals("read")) {
-			vo = nd.listOne(id);
+		NewsVO vo = null;
+		if(action!=null) {
+			if(action.equals("read")) {
+				vo = nd.listOne(id);
+				list = nd.listAll();
+			}
+			else if(action.equals("delete")) {
+				nd.delete(id);
+				list = nd.listAll();
+			}
+			else if(action.contains("search")) {
+				searchType = action.split("-")[1];
+				list = nd.search(key, searchType);
+				//System.out.println(searchType+","+key);
+			}
+			else if(action.equals("listwriter")) {
+				//System.out.println("writer : "+key);
+				list = nd.listWriter(key);
+			}
 		}
-		else if(action.equals("delete")) {
-			nd.delete(id);
-		}
-		list = nd.listAll();
-		if(!list.isEmpty()) {
-			
+		/*
+		if(list!=null) {
 			for(NewsVO data : list) {
 				System.out.println(data);
 			}
-			System.out.println("----------------------------");
-		}
-		if(vo == null) {
-			vo = new NewsVO();
-			vo.setId(id);
-			vo.setWriter("admin");
-			vo.setTitle("noname");
-			vo.setContent("noContent");
-			vo.setWritedate("today");
-			vo.setCnt(0);
-		}
+		}*/
 		request.setAttribute("view", vo);
 		request.setAttribute("viewlist", list);
 		RequestDispatcher rd = request.getRequestDispatcher("/jspexam/news.jsp");
@@ -72,6 +76,10 @@ public class NewsServlet extends HttpServlet {
 		int id = 0;
 		if(request.getParameter("newsid")!=null) {
 			id = Integer.parseInt(request.getParameter("newsid"));
+		}
+		int cnt = 0;
+		if(request.getParameter("cnt")!=null) {
+			cnt = Integer.parseInt(request.getParameter("cnt"));
 		}
 		String writer = request.getParameter("writer");
 		String title = request.getParameter("title");
@@ -90,6 +98,7 @@ public class NewsServlet extends HttpServlet {
 			vo.setWriter(writer);
 			vo.setTitle(title);
 			vo.setContent(content);
+			vo.setCnt(cnt);
 			nd.update(vo);
 		}
 		list = nd.listAll();
