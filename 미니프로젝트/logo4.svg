@@ -1,0 +1,14 @@
+<svg width="350pt" height="100pt" xmlns="http://www.w3.org/2000/svg">
+<style>
+	@import url("https://fonts.googleapis.com/css?family=Pacifico&amp;display=swap");
+</style>
+<defs>
+    <linearGradient id="gradient" x1="300" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#ED6E46" offset="0%"/>
+    <stop stop-color="#white" offset="100%"/>
+    </linearGradient>
+</defs>
+<text x="30" y="120" fill="url(#gradient)" font-size="80" font-family= "'Pacifico', 'cursive'">
+	#Traveler
+</text>
+</svg>
