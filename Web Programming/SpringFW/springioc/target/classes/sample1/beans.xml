@@ -11,6 +11,14 @@
 			<value>3000</value>
 		</property>
 	</bean>	
+	<bean id="messageBean2" class="sample1.MessageBeanImpl2">
+		<constructor-arg>
+			<value>potato</value>
+		</constructor-arg>
+		<property name="cost">
+			<value>3000</value>
+		</property>
+	</bean>
 </beans>
 
 
