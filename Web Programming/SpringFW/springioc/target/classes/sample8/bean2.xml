@@ -10,7 +10,6 @@
         					c:_0-ref="emp1"  c:_1="Development 1 Team"/>
 <bean id="engineer" class="sample8.Engineer"   
         					c:emp-ref="emp2"  c:dept="Technology 1 Team"/>
-
 <bean id="emp1"  class="sample8.Emp" 
                            	c:_0="Dooly" c:_1="1500000"/>
 <bean id="emp2"  class="sample8.Emp" 

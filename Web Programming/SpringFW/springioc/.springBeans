@@ -11,6 +11,8 @@
 		<config>src/test1.xml</config>
 		<config>src/test2.xml</config>
 		<config>src/exam1/beans.xml</config>
+		<config>src/exam2/bean1.xml</config>
+		<config>src/exam2/bean2.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
