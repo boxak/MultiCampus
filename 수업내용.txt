@@ -1895,6 +1895,36 @@ https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8
 
 
 
+  JSP  -----> Servlet 
+        Custom Tag : 필요한 기능의 태그를 직접 만들 수 있는 기능
+                           Apache Open Group : JSTL(만들어진 태그들의 표준)
+       			core library, xml library, sql library
+			fmt library, fn library
+        Action Tag : JSP가 제공하는 태그로 기능, 구현 방법이 정해져 있는 태그들..
+  ASP, PHP -> CGI
+
+  JSP ---> 웹 페이지 ------> HTML + JSP태그 + Java
+               규격화된 문서 --> XML + JSP태그 + Java
+                                      JSON + JSP태그 + Java
+      오류 발생
+      <h1>
+      <form>
+      <br>
+      <%=   %>
+      <%     %>
+      <jsp:forward     /> 
+      <jsp:useBean     />
+      <c:if />
+
+      for(변수선언 : 컬렉션객체) {
+
+
+      }
+      [ POST 방식으로 처리하는 경우 ]
+
+      <%@ taglib prefix="fmt" uri=" http://java.sun.com/jsp/jstl/fmt ">
+
+      <fmt:requestEncoding value="UTF-8"/>
 
 
 
@@ -1902,9 +1932,103 @@ https://search.naver.com/search.naver?sm=top_hty&fbm=0&ie=utf8
 
 
 
+   /wikimedia/projects/project/editions/edition[@language="English"]
+
+
+   //edition[@language="English"]
+
+
+   /wikimedia//edition[@language="English"]
+
+
+   <abc>
+       ㅋㅋㅋ
+        <def>MMM</def>
+       ㅠㅠㅠ
+   </abc>
+
+
+
+
+
+
+
+
+
+
+
+ 1. 제어판 프로그램 추가/삭제에서 프로그램 삭제
+
+2. 해당 파일로 재설치
+
+3. 시디키:  ﻿97045410-01163573
+
+
+
+
+
+
+
+
+
+
+                  1998년 EJB 라는 기술의 FrameWork의 시초
+ 2005년 정도 부터 FrameWork 기반의 개발이 주류를 이루게 된다.
+                        ----------
+                      반제품 형태의 SW
+                      개발 생산성과 유지보수성이 높다.    
+                     Struts, Spring, Mybatis(iBatis), Hibernate.....
+                                         --------------
+			      JDBC
+                              -------
+     Spring IoC, Spring JDBC, Spring MVC, Spring Android, Spring Hadoop...   										
+
+ [ Spring FW ]
+ - 고급 API
 
 
  
+
+  Eclipse EE = Eclipse for Java Developer + WTP(플러그인:pligin) + STS 추가설치
+
+  (1) Spring IoC   --> Java Application  --> springioc
+
+  (2) Spring MVC  --> Web 기반  --> springedu
+
+  (3) Mybatis  --> Web 기반
+
+   스프링 IoC를 학습하기 위한 프로젝트
+
+
+   autowired="byType"  : setter
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 NoUniqueBeanDefinitionException 발생
+(3) 없으면 null 주입
+
+autowired="byName"  : setter
+(1) 프로퍼티명과 동일한 명칭의 빈을 찾아서 해당 객체 주입
+(2) 없으면 null 주입
+
+autowired="constructor"  : constructor
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 매개변수명과 동일한 id 값을 갖는 객체 주입
+(3) 없으면 null 주입
+
+필드에 설정된 @Autowired  - Spring FW 전용
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 변수명과 동일한 id 값을 갖는 객체 주입
+(3) 없으면 NoSuchBeanDefinitionException 발생
+     (required = false 속성을 사용하여 없으면 null 이 되게 지정 가능)
+(4) @Qualifier(value="xxx")를 추가로 사용해서 변수명이 아닌 다른 이름 지정 가능
+
+필드에 설정된 @Resource  - Java
+(1) 변수명과 동일한 id 값을 갖는 빈을 찾아서 해당 객체 주입
+(2) 타입으로 찾아서 1개이면 객체 주입
+(3) 타입으로 찾아서 2개이상 이면 NoUniqueBeanDefinitionException 발생
+(4) 없으면 NoSuchBeanDefinitionException 발생
+
+
+
                                             
 
 
@@ -1969,11 +2093,336 @@ String date = ndate.format(dateF);
 
 
 
+  Java : Java SE,  Java EE, Java ME
+
+
+
+<servlet>
+  <servlet-name>abc</servlet-name>
+  <servlet-class>FirstServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>abc</servlet-name>
+  <url-pattern>/firstthree</url-pattern>
+</servlet-mapping>
+
+
+   톰캣 : Web Server + Application Server : WAS
+           ----------    ----------------   
+              코요테              카탈리나
+                                   서블릿엔진
+		         서블릿컨테이너
+
+
+   edu
+   sedu
+
+   OS - 폴더
+   Eclipse - Web Project
+   Tomcat - Context(Context Path : /edu, /sedu)
+   Developer - Web Application
+
+
+  압축파일은 c:\testcontent 폴더에 파일들이 저장되도록
+  압축을 해제한다.
+
+
+
+  1. BasketServlet1.java 를 먼저 완성한다.
+
+     pid 라는 이름으로 전달되는 상품ID 정보를 추출하여
+     파일에 저장(append 모드)하고
+     {"pid", "p00x"} 형식으로 응답하는 기능 구현.
+  
+     테스트시에는 pid=p00x 형식으로 Query 문자열을 URL 문자열 뒤에 붙여서
+     요청하고 수행이 잘 되는지 확인.
+
+	http://localhost:8000/sedu/basket1?pid=p003
+
+  2. productlogajax.html 를 구현한다.
+ 
+      Ajax 시간에 구현한 ajaxlab2.html 소스를 검토한 후에
+      구현한다. 
+
+
+   [ 어제 ]
+
+      { "pid" : "p003" }    --->  obj.pid, obj["pid"]
+
+   [ 오늘 ]
+   상품이미지 선택시 -
+
+     {"p001": 3, "p002" : 0, "p003" : 4, .... }  --> obj.p001, obj.p002, obj.p003, obj.p002
+				          obj["p001"]
+   휴지통이미지 선택시 -
+     {"msg" : "상품이 모두 삭제되었습니다." } --> obj.msg
+
+
+             if(obj.msg) {
+		msg 값 출력
+	} else {
+		선택된 상품 갯수 리스트 출력
+		  :
+	}
+
+
+    [ 파일 업로드 ]
+    - Query 문자열에 서버에 올리려는 파일의 내용을 포함시켜서 웹서버 프로그램을 요청
+    - 사용자가 업로드할 파일을 선택할 수 있게 화면을 제시해야 한다.
+
+      (1) <form> 태그의 자식태그중 <input type="file">
+           HTML5 이전에는 파일을 한 개만 선택 가능했음. <input type="file" multiple>
+           을 사용해서 멀티 파일을 2개 이상의 파일을 업로드할 수 있다.
+
+           기본적인 Query 문자열의 인코딩 규칙 : 
+	name=value&name=value&.....
+             영문, 숫자, 일부 특수문자를 제외하고 % 기호와 함께 16진수 코드값으로 변환
+
+           업로드되는 파일도 Query 문자열로 서버에 전송되어야 하지만 Query 문자열의 
+           인코딩 규칙 인코딩되면 안된다.
+
+           <form method="POST" action="" enctype="multipart/form-data">
+
+                           
+       
+
+      (2) 파일에 대한 Drag&Drop 기능을 이용해서 업로드할 파일을 윈도우즈 탐색기에서
+           선택하여 서버에 올릴 수 있다. Ajax 기술과 연계하여....
+
+     
+ [ Servlet 에서의 DB 연동 ]
+
+ (1) JDBC 드라이버 로딩(Class.forName())
+ (2) DB 서버 접속(DriverManager.getConnection("jdbcurl", "계정", "암호")
+ (3) SQL 문을 수행하기 위한 Statement, PreparedStatement 객체를 생성
+ (4) SELECT - executeQuery() : ResultSet(next(), getXXX())
+       INSERT, DELETE, UPDATE, CREATE TABLE, DROP TABLE...
+      - executeUpdate() : int(SQL명령에 의해 변화된 행의 갯수)
+
+
+  visitorMain.html - 방명록 리스트 보기 ---> /visitordb(GET)
+                            방명록 작성하기 ---> visitorForm.html ---> /visitordb(POST)
+
+  VisitorDBServlet(/visitordb)
+      GET - visitor 테이블의 데이터들을 모두 읽어 와서 테이블 형식으로 브라우저에 출력
+      POST - 전송되는 Query 문자열을 가지고 visitor 테이블에 저장
+
+
+  [ JSP : JavaServer Pages ]
+
+  CGI          -->      ASP, PHP
+
+  Servlet     -->      JSP  ----> 실행시 Servlet으로 변경됨
+  (1998)                (1999)
+  자바+HTML           HTML+JSP태그+약간의Java코드
+
+  ------------------------------------------------> MVC 개발패턴
+                                                                           Servlet+JSP
+                                                                             요청     응답
+
+  (1) 내장객체-9개
+     	request, response, session, out, application, config, exception
+             page, pageContext
+  (2) JSP 태그
+	<%@  %>,   <%!  %>,    <%=  %>,    <%  %>,     <%--  --%>
+             지시자태그   선언문태그  표현식태그  수행문태그   주석태그	
+  (3) 액션태그
+             <jsp:include />, <jsp:forward   />, <jsp:param   />...
+  (4) 커스텀태그	
+       JSTL
+
+	<%@ page  속성명="속성값" ...... %> : page 지시자 태그
+	language, contentType, pageEncoding, errorPage, isErrorPage, import
+	session, buffer, isELIgored ....
+
+	<%@ include file="포함하려는대상파일의로컬URL" %> : include 지시자 태그
+             포함하는 위치 : 이 지시자태그가 사용된 위치
+             포함하는 시기 : JSP를 Servlet 으로 변환하기 전
+             포함하는 대상 : html, jsp, jspf
+			                              	
+
+
+
+
+            a.jsp     b.jsp
+
+            	inclue action 태그로 : 2개의 서블릿 : 동적 포함
+	inclue 지시자 태그로 : 1개의 서블릿 : 정적 포함
+
+
+           <jsp:forward page="...">
+ 	 <jsp:param name="..." value=".../>
+           </jsp:forward>
+
+           <jsp:forward page="..."/>   
+
+           <jsp:forward page="..."></jsp:forward>    	
+
+
+           first.html 로 forward 할 때 한글이 깨집니다.
+           [ 해결 방법 ]
+  	방법1 : <meta> 태그의 charset 을 "euc-kr" 로 변경
+  	방법2 : forward 가 아니라 redirect 로 해결
+
+												
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   로그인 폼을 출력하는 부분을 복사하여 login.jspf 파일을 생성한다.
+   include 지시자 태그로 포함하는 코드를 세 군데 작성한다.
+
+   xxxVO - Value Object - 값을 보관하는 용도의 객체
+   xxxDAO - Data Access Object - DB 연동기능(JDBC)을 지원하는 객체
+   xxxService(xxxBiz) - Service Object - 이런 저런 서비스 로직을 지원하는 객체 
+
+
+   (1) mvc 라는 새로운 Dynamic Web Project 생성
+   (2) 이 프로젝트에서 생성되는 소스(텍스트)들의 인코딩 정보를 utf-8 로 설정
+   (3) mvc 프로젝트를 톰캣 서버에 컨텍스트로 등록
+   (4) src 폴더에 controller, model  패키지 생성
+   (5) WebContent 폴더에 images, jspexam 폴더 생성  
+   (6) 강사컴퓨터 교육자료 폴더에서 htmlexam 폴더를 복사하여 WebContent 에 붙인다.   
+         브라우저에서 /mvc/htmlexam/visitorForm.html 을 요청해 본다.
+
+   
+   - lottoForm.html -> htmlexam, LottoServlet2.java -> controller 에 복사
+
+   request.getParameter("xxx") 호출시 xxx 라는 이름의 Query 가 전달되지 않은 경우엔
+   null 을 리턴하고 xxx 라는 이름의 Query 는 왔는데 value 가 비어 있는 경우엔 
+   ""(널문자열)이 리턴됨.
+
+   Query 가 어떻게 전달되는지 확인하려는 경우...
+   POST 방식은 확인이 어려우니 GET 방식으로 변경하여 채크해 보는 것도 방법임..
+
+   name=&
+
+   ${header.referer}
+   ${header.user-agent}  --> ${header["user-agent"]}
+
+   jdbc 드라이버 파일 : sedu 프로젝트의 WEB-INF/lib/ojdbc6.jar
+                              mvc 프로젝트의 WEB-INF/lib/ojdbc6.jar
+
+
+
+   VisitorDAOTest
+
+
+   FlowFilter
+   HangulFilter
+
+
+
+[ Spring FW ]
+소스 코드의 코딩량을 줄여주고 유지보수성이 좋은 프로그램을 개발
+웹 서버 프로그래밍 - Spring MVC
+                          Spring IoC(Spring DI)
+
+Eclipse EE = Eclipse for Java Developer + WTP + STS 추가설치
+
+(1) Spring IoC
+
+     - Springioc 라는 Java Project 을 생성한다.
+     - Springioc를 Maven Project 으로 변환한다.
+     - pom.xml을 수정해서 이프로젝에서 의존하는 추가라이브러리에 대한
+       정보를 작성한다.
+       
+
+
+(2) Spring MVC
+
+
+
+(3) MyBatis
+
+
+
+[ 추가 라이브러리 준비하는 방법 ]
+(1) 해당 라이브러리 압축파일(xxx.jar)을 사이트에서 다운로드하여 
+     정해진 디렉토리에 저장하거나 패스 설정을 한다.(이클립스에서는 buildpath 설정)
+(2) 추가로 설치하려는 라이브러들을 관리해주는 툴(빌드 툴)
+     - 메이븐, 그래들....
+       (pom.xml)
+
+
+
+ 프레임워크(framework) - 1998, 2004~2006
+ - 스마트 라이브러리
+    라이브러리 + 디스크립터 파일(XML)
+ - EJB(1998), Servlet, Struts, iBatis(MyBatis), Spring, Spring MVC
+    Java+XML 
+
+
+
+autowire="byName"  : setter
+(1) 프로퍼티명과 동일한 명칭의 빈을 찾아서 해당 객체 주입
+(2) 없으면 null 주입
+
+
+autowire="byType"  : setter
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 NoUniqueBeanDefinitionException 발생
+(3) 없으면 null 주입
+
+
+autowire="constructor"  : constructor
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 매개변수명과 동일한 id 값을 갖는 객체 주입
+(3) 없으면 null 주입
+
+
+
+
+필드에 설정된 @Autowired  - Spring FW 전용
+(1) 타입으로 찾아서 1개이면 해당 객체 주입
+(2) 타입으로 찾아서 2개 이상이면 변수명과 동일한 id 값을 갖는 객체 주입
+(3) 없으면 NoSuchBeanDefinitionException 발생
+     (required = false 속성을 사용하여 없으면 null 이 되게 지정 가능)
+(4) @Qualifier(value="xxx")를 추가로 사용해서 변수명이 아닌 다른 이름 지정 가능
+
+
+
+
+
+필드에 설정된 @Resource  - Java
+(1) 변수명과 동일한 id 값을 갖는 빈을 찾아서 해당 객체 주입
+(2) 타입으로 찾아서 1개이면 객체 주입
+(3) 타입으로 찾아서 2개이상 이면 NoUniqueBeanDefinitionException 발생
+(4) 없으면 NoSuchBeanDefinitionException 발생
+
+
+
+Spring MVC Project : springedu
+
+ 패키지명 : my.spring.springedu
+
+http://localhost:8000/springedu
+톰캣재기동 한후에
+http://localhost:8000/springedu/hello
 
 
 
