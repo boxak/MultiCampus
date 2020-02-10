@@ -10,6 +10,8 @@ import vo.QueryVO;
 @Controller
 public class QueryStringController2 {	
 	@RequestMapping("/querystring5")
+	// -> get, post 둘 다 지원.
+	// request 객체에 queryVO라는 이름으로 vo 객체를 저장한다.
 	public ModelAndView proc(QueryVO vo) {
 		ModelAndView mav = new ModelAndView();
 		String name = vo.getTestName();
@@ -41,6 +43,7 @@ public class QueryStringController2 {
 		return mav;
 	}
 	@RequestMapping(value="/locale.do")
+	//locale -> 컨트롤러 메서드의 파라미터 타입 중 하나.
 	public ModelAndView proc(Locale l) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("spring", "Processing locale ............"+
