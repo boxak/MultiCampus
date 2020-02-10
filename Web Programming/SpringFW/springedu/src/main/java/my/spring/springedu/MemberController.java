@@ -10,8 +10,20 @@ import vo.MemberVO;
 public class MemberController{
 	@RequestMapping("/member")
 	public ModelAndView returnVO(MemberVO vo) {
+		//vo클래스 -> 커맨드 객체.
 		ModelAndView mav = new ModelAndView();
-		System.out.println(vo.getName());
+		if(vo.getName().equals("") || vo.getName()==null) {
+			vo.setName("없음");
+		}
+		if(vo.getTelNumber().equals("") || vo.getTelNumber()==null) {
+			vo.setTelNumber("없음");
+		}
+		if(vo.getEmail().equals("") || vo.getEmail()==null) {
+			vo.setEmail("없음");
+		}
+		if(vo.getPw().equals("") || vo.getPw()==null) {
+			vo.setPw("없음");
+		}
 		mav.addObject("info",vo);
 		mav.setViewName("memberView");
 		return mav;

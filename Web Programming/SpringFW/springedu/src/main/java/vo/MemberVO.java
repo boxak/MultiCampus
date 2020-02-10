@@ -38,5 +38,5 @@ public class MemberVO {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-	
+	//setter, getter 메서드의 set, get 뒤의 이름이랑 멤버변수명이랑 동일해야 한다!
 }
