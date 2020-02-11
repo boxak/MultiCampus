@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exercise 12_2</title>
+<style>
+	button{
+		width : 5%;
+		height : 50px;
+		border : 1px soild blue;
+		border-radius : 5px;
+		text-align : center;
+		margin-left : 25px;
+		margin-right : 25px;
+		margin-top : 20px;
+	}
+	button:hover{
+		color : white;
+		background-color : blue;
+		border : 3px;
+	}
+	#Frame{
+		width : 90%;
+		height : 500px;
+		border : 3px solid blue;
+		text-align : center;
+	}
+	#gugudan{
+		padding-top : 30px;
+	}
+</style>
+</head>
+<body>
+<h1>Exercise 12_2</h1>
+<div id="Frame">
+	<h2 style="text-align : center;">구구단</h2>
+	<button id="t1">1단</button>
+	<button id="t2">2단</button>
+	<button id="t3">3단</button>
+	<button id="t4">4단</button>
+	<button id="t5">5단</button>
+	<button id="t6">6단</button>
+	<button id="t7">7단</button>
+	<button id="t8">8단</button>
+	<button id="t9">9단</button><br>
+	<div id="gugudan" style="font-size : 20px;"></div>
+	
+	<script>
+	
+		var dom=document.getElementById("gugudan");
+		var btns=document.getElementsByTagName("button");
+		var str="";
+		
+		var printGugudan = function(){
+			str="";
+			var letter=this.id;
+			var number=letter.substring(1,letter.length);
+			number=parseInt(number);
+			for(var i=1;i<=9;i++){
+				str+=(number+" * "+i+" = "+(number*i)+"<br>");
+			}
+			dom.innerHTML=str;
+		}
+		
+		for(var i in btns){
+			btns[i].onclick=printGugudan;
+		}
+		
+	</script>
+
+</div>
+</body>
+</html>

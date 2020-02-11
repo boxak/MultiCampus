@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exercise8</title>
+</head>
+<body>
+<h1>Exercise 8</h1>
+<hr>
+<script src="util.js"></script>
+<script>
+
+	function printObject(p){
+		if(typeof p=="object"){
+			writeColor(p.msg,p.tag,p.color);
+		}
+	}
+	var p1={
+			tag : "h5",
+			color : "red",
+			msg : "멀티캠퍼스에서"
+	};
+	var p2={
+			tag : "h4",
+			color : "blue",
+			msg : "공부하고"
+	};
+	var p3={
+			tag : "h3",
+			color : "green",
+			msg : "대기업으로"
+	};
+	var p4={
+			tag : "h2",
+			color : "brown",
+			msg : "고고씽~~~"
+	};
+	var p5={
+			tag : "h1",
+			color : "black",
+			msg : "가즈아~~~~"
+	};
+	printObject(p1);
+	printObject(p2);
+	printObject(p3);
+	printObject(p4);
+	printObject(p5);
+	
+</script>
+
+
+</body>
+</html>

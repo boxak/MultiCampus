@@ -1,0 +1,12 @@
+package my.spring.springedu;
+
+import org.springframework.stereotype.Controller;
+import vo.MemberVO;
+
+@Controller
+public class MemberController{
+	@RequestMapping("/member")
+	public ModelAndView returnVO()
+}
+
+

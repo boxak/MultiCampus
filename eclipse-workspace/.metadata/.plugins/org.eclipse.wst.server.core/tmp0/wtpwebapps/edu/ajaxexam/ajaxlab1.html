@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weather Information</title>
+
+<style>
+
+	img{
+	
+		width : 100px;
+		height : 100px;
+	}
+	
+	h1{
+	
+		font-family : Times New Roman;
+	
+	}
+	
+</style>
+
+<script>
+
+	window.onload=function(){
+		
+		var request=new XMLHttpRequest();
+		request.onload=function(event){
+			if(request.status==200){
+				var str=request.responseText;
+				console.log(str);
+				
+				var obj=JSON.parse(str);
+				console.log(obj);
+				
+				var targetTime=document.getElementById("whatTime");
+				targetTime.innerHTML="기준 시간 : "+obj.time;
+				
+				var targetTemp=document.getElementById("whatTemp");
+				targetTemp.innerHTML="기온 : "+obj.temp;
+				
+				var targetImg=document.getElementById("photo");
+				targetImg.innerHTML="<img src='/edu/"+obj.img+"'>";
+			}
+		};
+		request.open('GET','content/weather.jsp',true);
+		request.send();
+	};
+	
+</script>
+
+
+</head>
+<body>
+
+<h1>Today's Weather Information</h1>
+<hr>
+
+<div id="whatTime"></div>
+<br>
+<div id="whatTemp"></div>
+<div id="photo"></div>
+
+</body>
+</html>

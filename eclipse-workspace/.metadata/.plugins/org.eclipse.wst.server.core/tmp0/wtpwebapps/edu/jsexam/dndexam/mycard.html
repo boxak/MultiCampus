@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Drag and Drop</title>
+	<link rel="stylesheet" href="dragdrop.css"></link>
+	<style>
+	
+		canvas{
+		
+			border : 2px solid 
+		
+		}
+	
+	</style>
+	<script>
+		var canvas, drop;
+		function initiate(){
+			//img 태그들에 대한 DOM객체 생성하고 이벤트 등록
+			var images=document.querySelectorAll('#picturesbox > img');
+			for(var i=0;i<images.length;i++){
+				images[i].addEventListener('dragstart',dragged,false);
+				images[i].addEventListener('dragend', ending, false);
+			}
+			//canvas id에 대한 DOM객체 생성
+			drop=document.getElementById('canvas');
+			//drop 객체에 대한 드로잉 컨텍스트 
+			canvas=drop.getContext('2d');
+			canvas.beginPath();
+			drop.addEventListener('dragover',function(e){e.preventDefault();},false);
+			//캔버스 영역에 드래그 오버됐을 때, 드래그오버 제한을 해제
+			drop.addEventListener('drop',dropped,false);
+		}
+		
+		function ending(e){
+			elem=e.target;
+			//elem.style.visibility='hidden';
+ 	  		//elem.style.display='none';
+			//elem.parentNode.removeChild(elem);
+		}
+		function dragged(e){
+			var elem=e.target;
+			e.dataTransfer.setData('aa',elem.getAttribute('id'));
+			//해당 이벤트는 이미지에 대해 일어나므로 e.target은 이미지 객체를 가리킨다. 
+			//즉, 드래그되는 동안 드래그되는 이미지의 id는 aa가 된다.
+			e.dataTransfer.setDragImage(elem,0,0);
+			//드래그되는 동안, 이미지가 커서를 따라다니는 이미지를 커서 기준 x,y위치에 출력되게 한다.
+		}
+		function dropped(e){
+			//이벤트 핸들러 제한 해제
+			e.preventDefault();
+			var id=e.dataTransfer.getData('aa');
+			//'aa'에 대한 데이터 추출
+			var elem=document.getElementById(id);
+			var posx=e.pageX-drop.offsetLeft;
+			var posy=e.pageY-drop.offsetTop;
+			canvas.drawImage(elem,posx,posy);
+		}
+		function initialize(){
+			canvas.clearRect(0,0,500,300);
+		}
+		function save(){
+			alert(drop.toDataURL()); 
+		    localStorage.setItem("canvas", drop.toDataURL());
+		    //drop의 내용을 URL을 통해 로컬 스토리지로 보내줌. -> setItem
+		}
+		function restore(){
+			var img = new Image();
+		    img.src = localStorage.getItem("canvas");
+		    //로컬 스토리지에서 getItem을 통해 가져옴.
+		    img.onload = function() {
+		    	canvas.drawImage(img, 0, 0);        
+		    }
+		}
+		
+		function changeBColor(){
+			var fill=document.getElementById("BColor").value;
+			console.log(fill);
+			canvas.fillStyle=fill;
+			canvas.fillRect(0,0,500,300);
+		}
+		
+		window.addEventListener('load',initiate,false);
+		
+	
+	</script>
+
+</head>
+<body>
+	<h1>HTML5로 크리스마스 카드 만들기</h1>
+	<button onclick="save();">저장하기</button>
+	<button onclick="restore();">읽어오기</button>
+	<button onclick="initialize();">지우기</button>
+	<h4>배경 칼라 설정 : <input type="color" id="BColor">
+	테두리 칼라 설정 : <input type="color" id="LColor"></h4>
+	<h4>메세지 칼라 설정 : <input type="color" id="MColor">
+	입력 메세지 : <input type="text"></h4>
+	<section id="dropbox">
+		<canvas id="canvas" width="500" height="300" onclick="changeBColor();"></canvas>
+	</section>
+	<section id="picturesbox">
+		<img id="image1" src="monster1.gif">
+		<img id="image2" src="monster2.gif">
+		<img id="image3" src="monster3.gif">
+		<img id="image4" src="monster4.gif">
+	</section>
+</body>
+
+</html>

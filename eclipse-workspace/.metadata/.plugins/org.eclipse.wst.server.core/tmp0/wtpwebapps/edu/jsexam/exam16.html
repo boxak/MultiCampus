@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>함수의 아규먼트 처리</h1>
+<hr>
+<script>
+function pr(p) {
+	document.write(typeof p + " : " + p + "<br>");	
+}
+pr(100); //number : 100
+pr("100"); // String : "100"
+pr(true); // bool : true
+pr(3.5); //number : 3.5
+pr(new Array(1,2,3)); //Object : [1,2,3]
+//prNum(10);
+document.write("ㅋㅋㅋㅋㅋㅋ");
+</script>
+<hr>
+<script>
+function prNum(p) {
+	if(typeof p == "number")
+		document.write("숫자 전달 : " + p + "<br>");
+	else if (p == undefined)
+		document.write("아규먼트를 전달하시오 : " + p + "<br>");
+	else
+		document.write(typeof p + " : " + p + "<br>");	
+}
+prNum(100); //숫자 전달 : 100
+prNum("100"); //String : "100"
+prNum(true); //bool : true
+prNum(3.5); //number: 3.5
+prNum(new Array(1,2,3)); //Object : [1,2,3]
+prNum(); //아규먼트를 전달하시오 : undefined
+pr(100000); //number : 1000000
+</script>
+<hr>
+<script>
+function prAll() {
+	for(var i=0; i < arguments.length; i++)
+		document.writeln(arguments[i]);
+	document.write("<br>");
+	return arguments.length;
+}
+var r1 = prAll(100);
+var r2 = prAll(1,2,3,4,5);
+var r3 = prAll('a', 'b', '가', true);
+var r4 = prAll();
+document.write(r1 + "<br>"); //1
+document.write(r2 + "<br>"); //5
+document.write(r3 + "<br>"); //4
+document.write(r4 + "<br>"); //0
+</script>
+</body>
+</html>
+
+
+
+
+
+

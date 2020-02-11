@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>exercise13</title>
+</head>
+
+<body>
+<h1>Exercise 13</h1>
+<hr>
+<button onclick="f('inline')">이미지 보이기</button>
+<button onclick="f('none')">이미지 숨기기</button>
+<br>
+<img src="../images/duke_luau.png">
+<script>
+
+	var target=document.getElementsByTagName("img")[0];
+	target.style.display="none";
+	
+	function f(push){
+		target.style.display=push;
+	}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Exercise</title>
+</head>
+<body>
+<script>
+	function sum(n){
+		var total;
+		for(var i=1;i<=n;i++){
+			if(i==1){
+				total=0;
+			}
+			total+=i;
+		}
+		return total;
+	}
+	var rand=Math.random();
+	rand=Math.floor(rand*6);
+	//document.write(rand+'<br>');
+	var value;
+	if(rand!=0){
+		value=sum(rand);
+	}
+	else{
+		value=sum();
+	}
+	//document.write(typeof value+'<br>');
+	if(value!=undefined){
+		document.write('호출 결과값 : '+value+'<br>');
+	}
+	else{
+		document.write('결과값이 없어요!!<br>');
+	}
+</script>
+</body>
+</html>

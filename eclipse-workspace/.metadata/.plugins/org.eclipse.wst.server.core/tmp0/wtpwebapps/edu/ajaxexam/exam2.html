@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>JavaScript로 구현하는 Ajax 프로그램-XML</h1>
+<hr>
+<script>
+window.onload = function() {
+	var request = new XMLHttpRequest();
+	//XMLHttpRequest 객체 생성
+	request.onreadystatechange = function() {
+		//readystatechange 이벤트 발생마다 호출되는 함수
+		if(request.readyState == 4) {
+			//응답이 완료되었는데
+			if(request.status == 200) {
+				//응답이 성공적이면
+				var xml = request.responseXML;
+				//서버로부터 응답된 XML을 읽겠다. <- 미리 생성한 XML DOM객체를 읽겠다.
+				//브라우저가 미리 파싱한 문서를 읽기만 하면 된다.
+				//alert(xml);
+				var rootE = xml.getElementsByTagName("testxml");
+				var output = "";
+				alert(rootE[0].childNodes.length);
+				for(var i=1;i <rootE[0].childNodes.length; i+=2)
+					//자식 객체는 3개가 아니라 7개이다.
+					//그래서 인덱스 1부터 해서 2씩 증가시킨다.
+					output += "<h2>"+
+					   rootE[0].childNodes[i].firstChild.nodeValue
+					   +"</h2>";
+				alert(output);
+				document.body.innerHTML += output;	   
+			}
+		}		
+	}
+	request.open("GET", "content/testxml.xml", true);
+	request.send();
+}
+</script>
+</body>
+</html>
+
+
+
+
+

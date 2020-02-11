@@ -1,0 +1,27 @@
+package exam2;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class StudyApp {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext factory1 =
+				new ClassPathXmlApplicationContext("exam1/bean1.xml");
+		
+		Student st1 = (Student)factory1.getBean("st1");
+		Student st2 = (Student)factory1.getBean("st2");
+		Student st3 = (Student)factory1.getBean("st3");
+		
+		System.out.println("Result From Bean1");
+		System.out.println(st1.getMyHomework().getHomeworkName());
+		System.out.println(st2.getMyHomework().getHomeworkName());
+		System.out.println(st3.getMyHomework().getHomeworkName());
+		
+		ApplicationContext factory2 =
+				new ClassPathXmlApplicationContext("exam1/bean2.xml");
+		
+	}
+
+}

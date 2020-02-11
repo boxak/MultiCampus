@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+
+	div{
+	
+		width : 400px;
+		text-align : center;
+		border : 1px black solid;
+		border-radius : 5px;
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : 180px;
+		background-image : radial-gradient(200px,white,pink);
+	}
+
+</style>
+
+<script>
+function inputPhoneNumber(obj) {
+
+
+
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+
+
+
+    if(number.length < 4) {
+        return number;
+    } else if(number.length < 7) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3);
+    } else if(number.length < 11) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 3);
+        phone += "-";
+        phone += number.substr(6);
+    } else {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 4);
+        phone += "-";
+        phone += number.substr(7);
+    }
+    obj.value = phone;
+}
+</script>
+</head>
+<body>
+<div>
+<h2 style="text-color : #327ba8;">회원 정보를 입력하십시오.</h2>
+<hr>
+<form action="http://localhost:8000/springedu/member" method="post">
+<input type="text" placeholder="이름을 입력하세요" name="name"><br>
+<input type="text" placeholder="전화번호를 입력하세요" onKeyup="inputPhoneNumber(this);" maxlength="13" name="telNumber"><br>
+<input type="email" placeholder="계정을 입력하세요" name="email"><br>
+<input type="password" placeholder="패스워드를 입력하세요" name="pw"><br><br>
+<button type="submit">등록</button>
+<button type="reset">재작성</button>
+</form>
+</div>
+</body>
+</html>

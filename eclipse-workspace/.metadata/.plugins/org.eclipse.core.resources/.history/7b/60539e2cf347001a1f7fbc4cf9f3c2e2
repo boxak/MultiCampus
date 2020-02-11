@@ -1,0 +1,40 @@
+package exam1;
+
+import java.time.LocalDateTime;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class GreetingTest {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext factory =
+				new ClassPathXmlApplicationContext("exam1/beans.xml"); 
+		System.out.println("** Container Initialization End **");
+		
+		LocalDateTime ldt = (LocalDateTime)factory.getBean("localtime");
+		
+		int hour = ldt.getHour();
+		System.out.println(hour);
+		Greeting greet;
+		if(hour>6 && hour<=12) {
+			greet = (MorningGreetingImpl)factory.getBean("morning");
+			greet.greet();
+		}
+		else if(hour>12 && hour<=5) {
+			greet = (AfternoonGreetingImpl)factory.getBean("afternoon");
+			greet.greet();
+		}
+		else if(hour>5 && hour<=10) {
+			greet = (EveningGreetingImpl)factory.getBean("evening");
+			greet.greet();
+		}
+		else {
+			greet = (NightGreetingImpl)factory.getBean("night");
+			greet.greet();
+		}
+		
+	}
+
+}

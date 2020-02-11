@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Exercise</title>
+</head>
+<body>
+	<script>
+		var Arr=new Array(10,5,7,21,4,8,18);
+		var sum=0;
+		for(var i in Arr){
+			sum=sum+Arr[i];
+		}
+		document.write("<h1>모든 원소의 합 : "+sum+"</h1><br><br>");
+		var maxValue=Arr[0];
+		var minValue=Arr[0];
+		
+		for(var i in Arr){
+			if(Arr[i]>maxValue) maxValue=Arr[i];
+			if(Arr[i]<minValue) minValue=Arr[i];
+		}
+		document.write("<ul>");
+		document.write("<li> 최댓값 : "+maxValue+"</li><br>");
+		document.write("<li> 최솟값 : "+minValue+"</li><br>");
+		
+	</script>
+</body>
+</html>

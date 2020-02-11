@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Drag and Drop</title>
+<link rel="stylesheet" href="dragdrop.css">
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+body:before{
+  content:'';
+  height:100%;
+  display:inline-block;
+  vertical-align:middle;
+}
+button{
+  background:linear-gradient(to right, #ff3399 0%, #9900ff 100%);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px; 
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  font-family: 'Hanna', sans-serif;
+  font-size:1.2em;
+  width: 200px;
+  height: 50px;
+}
+button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: linear-gradient(to right, #ff3399 0%, #9900ff 100%);
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+body{
+font-family: 'Hanna', sans-serif;
+}
+img {
+	width: 150px;
+	height: 150px;
+}
+
+h1 {
+	font-size: 3em;
+	font-family: 'Jeju Hallasan', cursive;
+	text-decoration-line: overline underline;
+  	text-decoration-style: wavy;
+   	color: #ff3399;   
+	
+}
+
+h2 {	
+   	color: #9900ff; 	
+}
+
+
+</style>
+
+
+</head>
+<body>
+	<h1>★☆HTML5로 카드 만들기☆★</h1>
+	<button onclick="save();">저장하기</button>
+	<button onclick="restore();">불러오기</button>
+	<button onclick="initialize();">삭제하기</button>
+	<br>
+	<h2>
+		배경 칼라 설정: <input type="color" id="bcolor" onchange="fillRect()">
+		테두리 칼라 설정: <input type="color" id="lcolor" onchange="strokeRect()">
+	</h2>
+	<h2>
+		메세지 칼라 설정: <input type="color" id="mcolor" onchange="textcolor()">
+		입력 메시지: <input type="text" id="message">
+	</h2>
+	<section id="dropbox">
+		<canvas id="canvas" width="500" height="300" onclick="text(this)"></canvas>
+
+	</section>
+	<section id="picturesbox">
+		<img id="image1" src="image/1.png"> <img id="image2"
+			src="image/2.png"> <img id="image3" src="image/3.png"> <img
+			id="image4" src="image/4.png"> <img id="image5"
+			src="image/5.png"> <img id="image6" src="image/6.png"> <img
+			id="image7" src="image/7.png"> <img id="image8"
+			src="image/8.png"> <img id="image9" src="image/9.png"> <img
+			id="image10" src="image/10.png">
+
+	</section>
+
+	<script>
+		var can = document.getElementById('canvas');
+		var context = can.getContext('2d');
+
+		function fillRect() {
+			var fill = document.getElementById("bcolor").value;
+			context.fillStyle = fill;
+			context.fillRect(0, 0, 500, 300);
+
+		}
+
+		function strokeRect() {
+			var stroke = document.getElementById("lcolor").value;
+			context.lineWidth = 20;
+			context.strokeStyle = stroke;
+			context.strokeRect(0, 0, 500, 300);
+		}
+
+		function text(e) {
+			var text = document.getElementById("message").value;
+			context.font = "30px malgun gothic";
+			console.log(e);
+			var x = e.pageX - can.offsetLeft;
+			var y = e.pageY - can.offsetTop;
+			canvas.fillText(text,x,y);	  
+		}//표준출력
+
+		can.addEventListener('click', text, false);
+
+		function textcolor() {
+			var tcolor = document.getElementById("mcolor").value;
+			context.fillStyle = tcolor;
+		}
+
+		/*   저장하기, 불러오기, 삭제하기 */
+		function save() {
+
+			alert(can.toDataURL());
+			localStorage.setItem('canvas', can.toDataURL());
+		}
+
+		function restore() {
+			var img = new Image();
+			img.src = localStorage.getItem('canvas');
+			img.onload = function() {
+				context.drawImage(img, 0, 0);
+			}
+		}
+		function initialize() {
+			canvas.clearRect(0, 0, 500, 300);
+		}
+
+		/*  이미지 드롭 */
+		var canvas, drop;
+		function initiate() {
+			var images = document.querySelectorAll('#picturesbox > img');
+			for (var i = 0; i < images.length; i++) {
+				images[i].addEventListener('dragstart', dragged, false);
+				images[i].addEventListener('dragend', ending, false);
+			}
+			drop = document.getElementById('canvas');
+			canvas = drop.getContext('2d');
+			drop.addEventListener('dragover', function(e) {
+				e.preventDefault();
+			}, false);
+			drop.addEventListener('drop', dropped, false);
+		}
+		function ending(e) {
+			elem = e.target;
+		}
+		function dragged(e) {
+			var elem = e.target;
+			e.dataTransfer.setData('aa', elem.getAttribute('id'));
+			e.dataTransfer.setDragImage(e.target, 0, 0);
+		}
+		function dropped(e) {
+			e.preventDefault();
+			var id = e.dataTransfer.getData('aa');
+			var elem = document.getElementById(id);
+
+			var posx = e.pageX - drop.offsetLeft;
+			var posy = e.pageY - drop.offsetTop;
+			canvas.drawImage(elem, posx, posy);
+
+		}
+		window.addEventListener('load', initiate, false);
+	</script>
+</body>
+</html>

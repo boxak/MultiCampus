@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;HomeController.java&apos; to &apos;springedu/src/main/java/my.spring.springedu&apos;&#x0D;&#x0A;- Original project: &apos;springsedu&apos;&#x0D;&#x0A;- Destination element: &apos;springedu/src/main/java/my.spring.springedu&apos;&#x0D;&#x0A;- Original element: &apos;HomeController.java&apos;" description="Copy file" destination="=springedu/src\/main\/java&lt;my.spring.springedu" element1="src/main/java/my/spring/sedu/HomeController.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1581056435272" units="0" version="1.0"/>
+</session>
