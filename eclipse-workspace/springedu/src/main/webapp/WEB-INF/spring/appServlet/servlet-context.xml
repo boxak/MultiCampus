@@ -22,7 +22,10 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="my.spring.springedu" />
-	
-	
+	<!-- 이게 있어야 컨트롤러가 돌아간다. -->
+	<context:component-scan base-package="service"/>
+	<context:component-scan base-package="dao"/>
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	
 </beans:beans>

@@ -1,0 +1,22 @@
+package service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import dao.LottoDAO;
+@Service
+public class LottoService2 {
+	public LottoService2()  {
+		System.out.println("LottoService 객체생성");
+	}
+	@Autowired
+	//LottoService는 LottoDAO 객체에 의존적이다.
+	LottoDAO lottoDAO = null;
+	public boolean getLottoProcess(int lottoNum) {
+		boolean result = false;		
+		int randomNumber = lottoDAO.getLottoNumber();
+		System.out.println("--- 난수: " + randomNumber);
+		System.out.println("--- 입력한 수: " + lottoNum);
+		if(randomNumber == lottoNum) 
+			result = true;
+		return result;
+	}
+} 

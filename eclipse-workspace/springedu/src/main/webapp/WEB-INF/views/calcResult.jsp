@@ -9,7 +9,7 @@
 <body>
 <h1>연산 요청 결과</h1>
 <hr>
-<h3>결과 : ${requestScope.result}</h3>
+<h3>결과 : ${calculation.result}</h3>
 <br>
 <a href="${header.referer}">입력 화면으로 돌아가기</a>
 </body>
