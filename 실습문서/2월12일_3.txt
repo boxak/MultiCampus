@@ -1,0 +1,11 @@
+JDBC로 구현된 MeetingDAO.java 를 MyBatis로 구현된 
+MeetingMybatisDAO.java 로 변경한다.
+
+MeetingServlet.java와 meetingView_jstl.jsp 는 변경할 사항이 없다!!!
+
+1) VisitorMapper.xml 를 참조하여 MeetingMapper.xml 을 생성한다.
+2) mybatis-config.xml 에 MeetingMapper.xml 을 등록한다.
+3) VisitorMybatisDAO.java를 참조하면서 MeetingMybatisDAO.java
+    을 구현한다.
+
+MeetingMapper.xml 와 MeetingMybatisDAO.java 를 제출한다.

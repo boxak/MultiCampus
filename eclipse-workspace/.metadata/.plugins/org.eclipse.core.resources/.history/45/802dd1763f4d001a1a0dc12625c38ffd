@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MyTeam Introduction</title>
+<script>
+	function showTeamName(){
+		var request = new XMLHttpRequest();
+		request.onload = function(event){
+			if(request.status == 200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				console.log(obj);
+				
+			}
+		}
+		request.open('GET','http://localhost:8000/springedu/myteam/json',true);
+		request.send();
+	}
+	
+	
+</script>
+</head>
+<body>
+<h1>우리팀 소개</h1>
+<hr>
+<button onclick='showTeamName();'>우리 팀명</button>
+<button onclick='showTeamMember();'>우리 팀원</button>
+<h3></h3>
+<ul></ul>
+</body>
+</html>

@@ -1,0 +1,10 @@
+package my.spring.springedu;
+
+public class MyTeamController {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

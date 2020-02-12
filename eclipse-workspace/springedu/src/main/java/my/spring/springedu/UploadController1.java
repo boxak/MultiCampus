@@ -10,6 +10,8 @@ import vo.FileVO;
 @Controller
 public class UploadController1 {
 	@RequestMapping("/uploadForm1")
+	//uploadForm1 이 응답한다.
+	//Spring MVC 에선 jsp 에 직접 접근하지 못하므로 uploadForm1 을 부르는 용도로 메서드 선언.
 	public void formFile() {	   
 	}
 	@RequestMapping("/upload")

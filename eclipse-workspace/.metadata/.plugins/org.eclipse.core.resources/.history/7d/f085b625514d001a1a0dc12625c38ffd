@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
+<style>
+	*{
+		font-family : Jua;
+	}
+	div{
+		margin-top : 50px;
+		margin-left : auto;
+		margin-right : auto;
+		border : 1px solid black;
+		border-radius : 5px;
+		width : 300px;
+	}
+	img{
+		width : 450px;
+		height : 300px;
+	}
+</style>
+<title>MyTeam Introduction</title>
+<script>
+	var request = new XMLHttpRequest();
+	var domh3;
+	var domUl;
+	window.onload = function(){
+		domh3 = document.getElementsByTagName("h3")[0];
+		domUl = document.getElementsByTagName("ul")[0];
+	}
+	function showTeamName(){
+		request.onload = function(){
+			if(request.status == 200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				console.log(obj);
+				domUl.innerHTML="";
+				domh3.innerHTML= obj.teamName;
+			}
+		}
+		request.open('GET','http://70.12.115.170:8000/springedu/myteam/json',true);
+		request.send();
+	}
+	function showTeamMember(){
+		request.onload = function(){
+			if(request.status == 200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				//console.log(obj);
+				var memberList = obj.teamMember;
+				console.log(memberList);
+				domUl.innerHTML="";
+				domh3.innerHTML="";
+				for(var i=0;i<memberList.length;i++){
+					domUl.innerHTML+="<li>name : "+memberList[i].name+", nicName : "+memberList[i].nicName+"</li>";
+				}
+				
+			}
+		}
+		request.open('GET','http://70.12.115.170:8000/springedu/myteam/json',true);
+		request.send();
+	}
+	
+	
+</script>
+</head>
+<body style="text-align : center;">
+<img src="https://byline.network/wp-content/uploads/2018/09/jarvis_india-1280x720.jpg">
+<div>
+<h1>우리팀 소개</h1>
+<hr>
+<button onclick='showTeamName();'>우리 팀명</button>
+<button onclick='showTeamMember();'>우리 팀원</button>
+<h3></h3>
+<ul></ul>
+</div>
+</body>
+</html>

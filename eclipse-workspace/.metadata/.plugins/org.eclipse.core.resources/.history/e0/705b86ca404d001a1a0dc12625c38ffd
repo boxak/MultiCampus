@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MyTeam Introduction</title>
+<script>
+	var request = new XMLHttpRequest();
+	function showTeamName(){
+		request.onload = function(){
+			if(request.status == 200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				console.log(obj);
+				var dom = document.getElementsByTagName("h3")[0];
+				dom.innerHTML= obj.teamName;
+			}
+		}
+		request.open('GET','http://localhost:8000/springedu/myteam/json',true);
+		request.send();
+	}
+	function showTeamMember(){
+		request.onload = function(){
+			if(request.status == 200){
+				var str = request.responseText;
+				var obj = JSON.parse(str);
+				//console.log(obj);
+				var doms = document.getElementsByTagName("ul")[0];
+				var memberList = obj.teamMember;
+				console.log(memberList);
+				doms.innerHTML="";
+				for(var i=0;i<memberList.length;i++){
+					doms.innerHTML+="<li>name : "+memberList[i].name+", nicName : "+memberList[i].nicName+"</li>";
+				}
+				
+			}
+		}
+		request.open('GET','http://localhost:8000/springedu/myteam/json',true);
+		request.send();
+	}
+	
+	
+</script>
+</head>
+<body>
+<h1>우리팀 소개</h1>
+<hr>
+<button onclick='showTeamName();'>우리 팀명</button>
+<button onclick='showTeamMember();'>우리 팀원</button>
+<h3></h3>
+<ul></ul>
+</body>
+</html>

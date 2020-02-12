@@ -35,9 +35,11 @@ public class UploadController2 {
 		for (MultipartFile mfile : list) {
 			String fileName = mfile.getOriginalFilename();
 			try {
-				File f = new File("c:/uploadtest/multi/" + fileName);
-				//String fileInfo = context.getRealPath("/") + "resources/images/"+fileName;
-				//File f = new File(fileInfo);
+				System.out.println("컨텍스트의 최상위 폴더 : "+context.getRealPath("/"));
+				//File f = new File("c:/uploadtest/multi/" + fileName);
+				String fileInfo = context.getRealPath("/") + "resources/images/"+fileName;
+				//해당 프로젝트의 최상위 폴더를 추출하는 메서드
+				File f = new File(fileInfo);
 				if (f.exists()) {
 					resultStr += fileName + " : 파일이 이미 존재해요!!<br>";
 				} else {
