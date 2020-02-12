@@ -46,7 +46,7 @@
     }
 %>
 <hr>
-<a href="/mvc/htmlexam/visitorForm.html ">방명록 홈 화면으로 가기</a>
+<a href="${header.referer}">방명록 홈 화면으로 가기</a>
 
 </body>
 </html>
