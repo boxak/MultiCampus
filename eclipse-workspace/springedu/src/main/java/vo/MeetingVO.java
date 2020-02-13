@@ -1,4 +1,4 @@
-package model.vo;
+package vo;
 
 public class MeetingVO {
 	private int id;

@@ -30,7 +30,7 @@ public class MeetingJDBCDAO implements MeetingDAO{
 			MeetingVO vo = null;
 			while(rs.next()) {
 				vo = new MeetingVO();
-				vo.setId(rs.getString(1));
+				vo.setId(rs.getInt(1));
 				vo.setName(rs.getString(2));
 				vo.setTitle(rs.getString(3));
 				vo.setMeetingDate(rs.getString(4));
@@ -84,7 +84,7 @@ public class MeetingJDBCDAO implements MeetingDAO{
 			MeetingVO vo = null;
 			while(rs.next()) {
 				vo = new MeetingVO();
-				vo.setId(rs.getString(1));
+				vo.setId(rs.getInt(1));
 				vo.setName(rs.getString(2));
 				vo.setTitle(rs.getString(3));
 				vo.setMeetingDate(rs.getString(4));

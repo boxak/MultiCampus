@@ -63,7 +63,7 @@ public class MeetingServlet2 extends HttpServlet {
 				request.setAttribute("msg", name + "님의 글이 입력되지 않았습니다.");
 			}
 		} else {
-			vo.setId(action);
+			//vo.setId(action);
 			boolean result = dao.update(vo);
 			if (result) {			
 				request.setAttribute("msg", name + "님의 글이 성공적으로 수정되었습니다.");			

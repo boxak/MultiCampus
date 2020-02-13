@@ -1,0 +1,17 @@
+[ Mybatis 실습 ]
+
+JDBC 기술로 구현된 MeetingJDBCDAO.java 
+MyBatis 기술로 구현된 MeetingMybatisDAO.java 로 변경한다.
+
+1) VisitorMapper.xml 과 제공된 보충자료를 참조하여 MeetingMapper.xml 을 생성한다.
+2) mybatis-config.xml 에 MeetingMapper.xml 을 등록한다.
+3) VisitorMybatisDAO2.java를 참조하여 MeetingMybatisDAO.java 을 구현한다.
+    (각 메서드마다.. "Mybatis... 메서드명"을 표준출력한다.
+4) MeetingServlet.java 에서는 DAO 객체 생성하는 부분만 수정한다.
+5) meetingView_jstl.jsp 는 변경할 사항이 없다!!!
+
+MeetingMapper.xml, MeetingServlet.java, MeetingMybatisDAO.java 를 제출한다.
+
+??
+원래 search할 때, key로 쓰면 primary key를 가지고 오는 건지?
+왜 meeting에선 selectkey태그 쓰는지?
