@@ -43,7 +43,7 @@
 		<td><%= vo.getName() %> // </td>
 		<td><%= vo.getTitle() %> // </td>
 		<td><%= vo.getMeetingDate() %></td>
-		<td><button onclick="location.href='/sprindedu/delete/<%= vo.getId() %>'"><img src="https://image.flaticon.com/icons/png/512/1966/1966368.png"></button>
+		<td><button onclick="location.href='/springedu/delete?id=<%= vo.getId() %>'"><img src="https://image.flaticon.com/icons/png/512/1966/1966368.png"></button>
 		</td>
 	</tr>
 	<% } %>

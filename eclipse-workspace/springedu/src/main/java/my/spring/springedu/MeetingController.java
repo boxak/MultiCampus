@@ -17,6 +17,7 @@ public class MeetingController {
 	MeetingDAO dao;
 	@RequestMapping("/listAll")
 	public ModelAndView listAll() {
+		System.out.println("Meeting listAll - Mybatis");
 		ModelAndView mav = new ModelAndView();
 		List<MeetingVO> list = dao.listAll();
 		mav.addObject("meetingTable",list);
@@ -25,6 +26,7 @@ public class MeetingController {
 	}
 	@RequestMapping("/find")
 	public ModelAndView search(String keyword) {
+		System.out.println("Meeting search - Mybatis");
 		ModelAndView mav = new ModelAndView();
 		List<MeetingVO> list = dao.search(keyword);
 		mav.addObject("meetingTable",list);
@@ -40,8 +42,9 @@ public class MeetingController {
 		mav.setViewName("meetingView");
 		return mav;
 	}
-	@RequestMapping(value="/delete/{id}")
-	public ModelAndView delete(@PathVariable("id")int id) {
+	@RequestMapping(value="/delete")
+	public ModelAndView delete(int id) {
+		System.out.println("Meeting delete - Mybatis");
 		dao.delete(id);
 		ModelAndView mav = new ModelAndView();
 		List<MeetingVO> list = dao.listAll();
@@ -51,6 +54,7 @@ public class MeetingController {
 	}
 	@RequestMapping("/update")
 	public ModelAndView update(int id) {
+		System.out.println("Meeting update - Mybatis");
 		dao.update(id);
 		ModelAndView mav = new ModelAndView();
 		List<MeetingVO> list = dao.listAll();
