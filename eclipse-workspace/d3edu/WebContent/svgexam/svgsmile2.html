@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SVG로 Smile 그리기</title>
+<style>
+	svg{
+		width : 800px;
+		height : 800px;
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : auto;
+		margin-bottom : auto;
+		text-align : center;
+	}
+	#big{
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : auto;
+		margin-bottom : auto;
+		text-align : center;
+	}
+</style>
+</head>
+<body style="text-align : center;">
+<svg>
+	<circle cx="310" cy="305" r="245" fill="#6C87B0" id="big"/>
+	<circle cx="310" cy="305" r="105" fill="#FFE77D" id="small"/>
+	<path d="M 250,235 L 285,245" stroke="#222A3E" stroke-width="10" stroke-linecap="round"/>
+	<path d="M 285,245 L 241,257" stroke="#222A3E" stroke-width="10" stroke-linecap="round"/>
+	<path d="M 370,235 L 335,245" stroke="#222A3E" stroke-width="10" stroke-linecap="round"/>
+	<path d="M 335,245 L 379,257" stroke="#222A3E" stroke-width="10" stroke-linecap="round"/>
+	<path d="M 245,285 C 300,265, 320,265, 375,285" stroke="#235199" fill="#235199" stroke-width="2" stroke-linecap="round"/>
+	<clipPath id="cut-off-bottom">
+    	<rect x="245" y="285" width="200" height="100" />
+    </clipPath>
+	<circle cx="310" cy="285" r="65" fill="#235199" clip-path="url(#cut-off-bottom)" />
+	<path d="M 265,330 C 282,305 338,305 355,330" fill="#F2637A"/>
+	<path d="M 265,330 C 282,355 338,355 355,330" fill="#F2637A"/>
+</svg>
+</body>
+</html>

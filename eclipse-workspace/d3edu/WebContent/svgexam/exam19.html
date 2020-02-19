@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SVG로 그리기</title>
+</head>
+<body>
+<h1>베지에 곡선 표시</h1>
+<svg>
+	<path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80"
+	stroke="#eb6e4c" fill="blue" stroke-width="6" stroke-linecap="round"/>
+	<!-- C : 조절점의 역할, (40,10),(65,10)은 조절점의 역할, (95,80)은 endpoint로 인식된다. -->
+	<!-- (150,150)은 반대편 조절점으로 인식된다. S의 역할은 조절점을 하나만 줘도 앞의 조절점과
+	균형을 맞춰서 곡선을 그려준다. -->
+</svg>
+<hr>
+<svg>
+	<path d="M10 80 C 40 10, 65 10, 95 80"
+	stroke="green" fill="red" stroke-width="6" stroke-linecap="round"/>
+</svg>
+<hr>
+<svg>
+	<path d="M10 80 C 40 10, 150 150, 180 80"
+	stroke="blue" fill="yellow" stroke-width="6" stroke-linecap="round"/>
+</svg>
+</body>
+</html>
