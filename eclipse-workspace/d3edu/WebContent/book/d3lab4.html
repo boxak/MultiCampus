@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<h1>가로 막대그래프</h1>
+	<svg id="myGraph" width="400"></svg>
+	<script>
+		d3.csv("../sample3/mydata.csv",function(error,data){
+			console.log(data);
+			var extend = d3.extent(data,function(e1){return +e1.item2});
+			console.log(extend);
+			var match = d3.scale.linear().domain([extend[0],extend[1]]).range(["yellow","blue"]);
+			var dataSet = [];
+			for(var i in data){
+				dataSet.push(data[i].item2);
+			}
+			d3.select("#myGraph")
+			.selectAll("rect")
+			.data(dataSet)
+			.enter()
+			.append("rect")
+			.attr("x","0")
+			.attr("y",function(d,i){
+				return i*25;
+			})
+			.attr("height","20")
+			.attr("width",function(d,i){
+				return d+"px";
+			})
+			.attr("fill",function(d,i){
+				return match(d);
+			})
+			.on("click",function(d,i){
+				window.alert("the value of "+(i+1)+" is "+d);
+			})
+		});
+	</script>
+</body>
+</html>

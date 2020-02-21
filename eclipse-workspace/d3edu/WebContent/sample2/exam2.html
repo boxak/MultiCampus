@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exam2.html</title>
+<meta charset="utf-8" />
+<script src="d3.v3.min.js"></script>
+</head>
+<body>
+<h2>enter(), exit() 의 기능을 확실히 이해하자!</h2>
+<hr>
+<div>111</div>
+<div>222</div>
+<script>
+d3.select('body')
+    .selectAll("div")
+    .data(['aaa', 'bbb', 'ccc', 'ddd']) 
+    .enter()
+    .append('div')
+    .text(function(d, i){console.log(d+":"+i);return d +"-"+i})
+    //새로 append된 div에서 text를 호출했으므로 111,222는 그대로 나온다.
+</script>
+</body>
+</html>

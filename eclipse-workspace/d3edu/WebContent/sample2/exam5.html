@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exam5.html</title>
+<meta charset="utf-8" />
+<script src="d3.v3.min.js"></script>
+</head>
+<body>
+<h2>외부 파일 읽어오기</h2>
+<hr>
+자바스크립트 콘솔에서 확인하셩...
+<script>
+d3.csv("cities.csv",function(data) {console.log(data)});
+d3.json("tweets.json",function(data) {console.log(data)});	
+//d3에선 웬만한 문서 파일 다 처리할 수 있다.
+//자바스크립트에선 코드를 비동기로 처리하므로 두 문서간 순서가 바뀔 수도 있다.
+//순서를 확실히 하고 싶으면 함수 안에다 console.log를 넣으면 된다.
+</script>
+</body>
+</html>
