@@ -140,6 +140,7 @@ public class MeetingJDBCDAO implements MeetingDAO{
 		}
 		return flag;
 	}
+	public boolean update(int id) {return true;}
 	
 	
 }

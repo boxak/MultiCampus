@@ -81,4 +81,5 @@ public class MeetingMybatisDAO implements MeetingDAO{
 		session.close();
 		return flag;
 	}
+	public boolean update(MeetingVO vo) {return true;}
 }
