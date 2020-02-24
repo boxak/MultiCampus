@@ -209,7 +209,7 @@ public class JobadDAO {
 		try {
 			stmt = conn.createStatement();
 			PagingControl page = new PagingControl(10,5,getCount(),curPage);
-			String sql = "select * from "
+			String sql = "select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment,post_phone,post_review_count,rownum from "
 					+"(select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment"
 					+ ",post_phone,post_review_count,rownum from "
 					+ "(select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment "
@@ -238,7 +238,7 @@ public class JobadDAO {
 			rs.next();
 			int count = rs.getInt(1);
 			PagingControl page = new PagingControl(5,5,count,curPage);
-			String sql = "select * from "
+			String sql = "select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment,post_phone,post_review_count,rownum from "
 					+"(select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment"
 					+ ",post_phone,post_review_count,rownum from "
 					+ "(select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment "
@@ -253,6 +253,30 @@ public class JobadDAO {
 		}
 		finally {
 			close(conn, stmt, rs);
+		}
+		return list;
+	}
+	public List<JobadVO> listSort(String sortColumn, int curPage){
+		Statement stmt = null;
+		ResultSet rs = null;
+		List<JobadVO> list = null;
+		Connection conn = getConnection();
+		try {
+			PagingControl page = new PagingControl(10,5,getCount(),curPage);
+			String sql = "select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\"년\" mm\"월\" dd\"일\" hh24\"시\":mi\"분\"'),post_hit,post_location,post_payment,post_phone,post_review_count,rownum from "
+					+ "(select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\\\"년\\\" mm\\\"월\\\" dd\\\"일\\\" hh24\\\"시\\\":mi\\\"분\\\"'),post_hit,post_location,post_payment,post_phone,post_review_count,rownum from "
+					+ "(select post_id,mem_userid,mem_username,post_title,post_content,to_char(post_writedate,'yyyy\\\"년\\\" mm\\\"월\\\" dd\\\"일\\\" hh24\\\"시\\\":mi\\\"분\\\"'),post_hit,post_location,post_payment,post_phone,post_review_count,rownum from "
+					+ "jobad order by "+sortColumn+" asc)) "
+					+ "where rownum between "+page.getWritingStart()+" and "+page.getWritingEnd();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			list = makeList(rs);
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(conn,stmt,rs);
 		}
 		return list;
 	}
