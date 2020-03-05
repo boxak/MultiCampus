@@ -1,4 +1,4 @@
-package model.vo;
+package vo;
 
 public class JobadVO {
 	private int post_id;

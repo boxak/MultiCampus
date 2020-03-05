@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,8 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.vo.JobadVO;
+import org.springframework.stereotype.Repository;
 
+import vo.JobadVO;
+
+@Repository
 public class JobadDAO {
 	private Connection getConnection() {
 		Connection conn = null;
