@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import vo.JobadVO;
 
-@Repository
+//@Repository
 public class JobadDAO {
 	private Connection getConnection() {
 		Connection conn = null;
@@ -77,7 +77,7 @@ public class JobadDAO {
 		try {
 			
 			String statement = "update jobad set mem_userid =?, mem_username=?, post_title=?,"
-					+ "post_content=?,post_writedate=sysdate,post_location=?,post_payment=?,post_phone=? where post_id = ?";
+					+ "post_content=?,post_location=?,post_payment=?,post_phone=? where post_id = ?";
 			stmt = conn.prepareStatement(statement);
 			stmt.setString(1, vo.getMem_userid());
 			stmt.setString(2, vo.getMem_username());
@@ -163,13 +163,13 @@ public class JobadDAO {
 		try {
 			stmt = conn.createStatement();
 			if(searchType.equals("content")) {
-				searchExpr = " content like '%"+key+"%'";
+				searchExpr = "post_content like '%"+key+"%'";
 			}
 			else if(searchType.equals("title")) {
-				searchExpr = " title like '%"+key+"%'";
+				searchExpr = "post_title like '%"+key+"%'";
 			}
 			else {
-				searchExpr = " title like '%"+key+"%'"+" or content like '%"+key+"%'";
+				searchExpr = "post_title like '%"+key+"%'"+" or post_content like '%"+key+"%'";
 			}
 			rs = stmt.executeQuery("select count(*) from jobad where "+searchExpr);
 			rs.next();
@@ -187,22 +187,22 @@ public class JobadDAO {
 		PagingControl page = new PagingControl(10,5,size,curPage);
 		StringBuilder buffer = new StringBuilder();
 		if(page.isPreData()) {
-			buffer.append("<a href='/mvc/jobad?pgNum=");
+			buffer.append("<a href='/springnews/jobad?pgNum=");
 			buffer.append((page.getPageStart()-1)+linkStr+"'>");
-			buffer.append("<img src='/mvc/images/left.png' width='15'></a> ");
+			buffer.append("<img src='/springnews/resources/images/left.png' width='15'></a> ");
 		}
 		for(int i = page.getPageStart(); i <= page.getPageEnd();i++) {
 			if(i == curPage) {
-				buffer.append("<a href='/mvc/jobad?pgNum="+i+linkStr+"'"+" style='font-weight:bold;'>"+i+"</a> ");
+				buffer.append("<a href='/springnews/jobad?pgNum="+i+linkStr+"'"+" style='font-weight:bold;'>"+i+"</a> ");
 			}
 			else {
-				buffer.append("<a href='/mvc/jobad?pgNum="+i+linkStr+"'"+">"+i+"</a> ");
+				buffer.append("<a href='/springnews/jobad?pgNum="+i+linkStr+"'"+">"+i+"</a> ");
 			}
 		}
 		if(page.isNextData()) {
-			buffer.append("<a href='/mvc/jobad?pgNum=");
+			buffer.append("<a href='/springnews/jobad?pgNum=");
 			buffer.append((page.getPageEnd()+1)+linkStr+"'>");
-			buffer.append(" <img src='/mvc/images/right.png' width='15'></a>");
+			buffer.append(" <img src='/springnews/resources/images/right.png' width='15'></a>");
 		}
 		System.out.println(buffer.toString());
 		return buffer.toString();
@@ -241,10 +241,7 @@ public class JobadDAO {
 		Connection conn = getConnection();
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from jobad where mem_username = '"+mem_username+"'");
-			rs.next();
-			int count = rs.getInt(1);
-			PagingControl page = new PagingControl(10,5,count,curPage);
+			PagingControl page = new PagingControl(10,5,getCount(mem_username),curPage);
 			String sql = "select post_id,mem_userid,mem_username,post_title,post_content,post_writedate,post_hit,post_location,post_payment,post_phone,post_review_count from "
 					+"(select post_id,mem_userid,mem_username,post_title,post_content,post_writedate,post_hit,post_location,post_payment"
 					+ ",post_phone,post_review_count,rownum rnum from "
@@ -305,9 +302,7 @@ public class JobadDAO {
 		}
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from Jobad where "+searchExpr);
-			rs.next();
-			int count = rs.getInt(1);
+			int count = getCount(key,searchType);
 			if(count>0) {
 				PagingControl page = new PagingControl(10,5,count,curPage);
 				String sql = "select post_id,mem_userid,mem_username,post_title,"

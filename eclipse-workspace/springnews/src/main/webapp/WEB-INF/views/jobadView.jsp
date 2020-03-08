@@ -16,7 +16,6 @@
 
 List<JobadVO> list = (List<JobadVO>)request.getAttribute("list");
 JobadVO vo = (JobadVO)request.getAttribute("vo");
-//System.out.println("list size : "+list.size());
 if(list!=null && list.size()!=0){
 %>
 	<table>
@@ -58,7 +57,6 @@ if(list!=null && list.size()!=0){
 	</table>
 <%
 	out.print(request.getAttribute("pagelist"));
-	//System.out.println(request.getAttribute("pagelist"));
 %>
 <button onclick="location.href='/springnews/resources/jobadInsertForm.jsp'">새 글 작성</button>
 <button onclick="location.href='/springnews/jobad'">첫 화면으로 가기</button>
@@ -77,6 +75,7 @@ if(list!=null && list.size()!=0){
 if(request.getAttribute("snull")!=null){
 %>
 	<h1><%= (String)request.getAttribute("snull") %></h1>
+	<button onclick="location.href='/springnews/jobad'">목록 가기</button>
 <%
 }
 %>
@@ -96,7 +95,7 @@ if(vo!=null){
 	<li>전화번호 : <%= vo.getPost_phone() %></li>
 	<li>리뷰 수 : <%= vo.getPost_review_count() %></li>
 	</ul>
-	<a href="${header.referer}">목록 가기</a>
+	<button onclick="location.href='/springnews/jobad?pgNum=${sessionScope.pgNum}'">목록 가기</button>
 	<button onclick="location.href='/springnews/jobad?action=delete&post_id=<%= vo.getPost_id() %>'">글 삭제하기</button>
 	<button onclick="location.href='/springnews/resources/jobadUpdateForm.jsp'">글 수정하기</button>
 </div>

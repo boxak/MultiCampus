@@ -11,7 +11,7 @@
 <div>
 <form method="post" action="/springnews/jobad">
 	<input type="hidden" name="action" value="insert">
-	<input type="hidden" name="pgNum" value="${pgNum}">
+	<input type="hidden" name="pgNum" value="${sessionScope.pgNum}">
 	<input type="hidden" name="post_id" value="1">
 	유저 아이디 : <input type="text" name="mem_userid"><br>
 	유저 이름 : <input type="text" name="mem_username"><br>
@@ -22,6 +22,7 @@
 	전화번호 : <input type="text" name="post_phone"><br>
 	<input type="submit" value="새 글 작성">
 </form>
+<a href="${header.referer}">작성 취소</a>
 </div>
 
 </body>

@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.JobadDAO;
+import dao.JobadDAO2;
 import vo.JobadVO;
 
 @Controller
 public class JobadController {
-	@Autowired JobadDAO dao;
+	@Autowired JobadDAO2 dao;
 	@RequestMapping(value="/jobad",method=RequestMethod.GET)
 	public ModelAndView doGet(
 	@RequestParam(value="action",required=false)String action,
@@ -33,6 +34,8 @@ public class JobadController {
 		String linkStr = "";
 		if(action==null) {
 			list = dao.listAll(pgNum);
+			session.setAttribute("pgNum", pgNum);
+			System.out.println("pgNum : "+pgNum);
 			mav.addObject("msg","구인 게시판");
 			if(list!=null && list.size()!=0) {
 				mav.addObject("list",list);
@@ -80,7 +83,7 @@ public class JobadController {
 		}
 		else if(action.equals("delete")) {
 			dao.delete(post_id);
-			mav.setViewName("redirect:http://localhost:8000/springnews/jobad?pgNum="+pgNum);
+			mav.setViewName("redirect:http://localhost:8000/springnews/jobad?pgNum="+session.getAttribute("pgNum"));
 			return mav;
 		}
 		mav.addObject("totalCount",count);
@@ -92,15 +95,15 @@ public class JobadController {
 	@RequestMapping(value="/jobad",method=RequestMethod.POST)
 	public String doPost(@RequestParam("action")String action,
 	@RequestParam(defaultValue="0")int post_id,
-	@RequestParam(defaultValue="1")int pgNum,
-	@ModelAttribute("vo")JobadVO vo) {
+	@ModelAttribute("vo")JobadVO vo,
+	HttpSession session) {
 		if(action.equals("insert")) {
 			dao.insert(vo);
 		}
 		else if(action.equals("update")) {
 			dao.update(vo);
 		}
-		return "redirect:/jobadView";
+		return "redirect:http://localhost:8000/springnews/jobad?pgNum="+session.getAttribute("pgNum");
 	}
 	
 }

@@ -12,6 +12,7 @@
 	<form action="/springnews/jobad" method="post">
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="post_id" value="<%= vo.getPost_id() %>">
+		<input type="hidden" name="pgNum" value="${sessionScope.pgNum}">
 		유저 아이디 : <input type="text" name="mem_userid" value="<%= vo.getMem_userid() %>">
 		유저 이름 : <input type="text" name="mem_username" value="<%= vo.getMem_username() %>">
 		글 제목 : <input type="text" name="post_title" value="<%= vo.getPost_title() %>">
@@ -20,8 +21,8 @@
 		시급: <input type="number" name="post_payment" value="<%= vo.getPost_payment() %>">
 		글 제목 : <input type="text" name="post_phone" value="<%= vo.getPost_phone() %>">
 		<input type="submit" value="수정 완료">
-		<button onclick="location.href='/springnews/jobad?action=listone&post_id=<%= vo.getPost_id() %>'">수정 취소</button>
 	</form>
+	<button onclick="location.href='/springnews/jobad?action=listone&post_id=<%= vo.getPost_id() %>'">수정 취소</button>
 </div>
 </body>
 </html>
