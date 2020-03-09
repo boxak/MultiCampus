@@ -13,8 +13,6 @@
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="post_id" value="<%= vo.getPost_id() %>">
 		<input type="hidden" name="pgNum" value="${sessionScope.pgNum}">
-		유저 아이디 : <input type="text" name="mem_userid" value="<%= vo.getMem_userid() %>">
-		유저 이름 : <input type="text" name="mem_username" value="<%= vo.getMem_username() %>">
 		글 제목 : <input type="text" name="post_title" value="<%= vo.getPost_title() %>">
 		글 내용 : <input type="text" name="post_content" value="<%= vo.getPost_content() %>">
 		장소 : <input type="text" name="post_location" value="<%= vo.getPost_location() %>">

@@ -132,6 +132,8 @@ public class JobadDAO2 {
 	}
 	public JobadVO listOne(int post_id) {
 		String statement = "resource.JobadMapper.listOneJobad";
+		String statement2 = "resource.JobadMapper.AddPost_hit";
+		session.update(statement2,post_id);
 		return session.selectOne(statement,post_id);
 	}
 }

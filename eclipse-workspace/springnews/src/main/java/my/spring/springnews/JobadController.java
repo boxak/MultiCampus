@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dao.JobadDAO;
 import dao.JobadDAO2;
 import vo.JobadVO;
+import vo.LoginVO;
 
 @Controller
 public class JobadController {
@@ -97,6 +98,10 @@ public class JobadController {
 	@RequestParam(defaultValue="0")int post_id,
 	@ModelAttribute("vo")JobadVO vo,
 	HttpSession session) {
+		LoginVO vo1 = (LoginVO)session.getAttribute("loginVO");
+		
+		vo.setMem_userid(vo1.getMem_userid());
+		vo.setMem_username(vo1.getMem_username());
 		if(action.equals("insert")) {
 			dao.insert(vo);
 		}

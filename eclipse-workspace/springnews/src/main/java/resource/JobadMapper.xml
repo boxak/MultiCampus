@@ -104,4 +104,7 @@
   		post_phone,
   		post_review_count from jobad where post_id=#{post_id}
   	</select>
+  	<update id="AddPost_hit" parameterType="_int">
+  		update jobad set post_hit=post_hit+1 where post_id=#{post_id}
+  	</update>
   </mapper>
