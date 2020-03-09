@@ -70,6 +70,10 @@ if(list!=null && list.size()!=0){
 <%
 	out.print(request.getAttribute("pagelist"));
 %>
+<%
+}
+%>
+<% if(vo==null){ %>
 <button onclick="isAdmin('insert');">새 글 작성</button>
 <button onclick="location.href='/springnews/jobad'">첫 화면으로 가기</button>
 <form action="/springnews/jobad" method="get">
@@ -82,8 +86,8 @@ if(list!=null && list.size()!=0){
 	<input type="text" name="key">
 	<input type="submit" value="검색">
 </form>
+<% } %>
 <%
-}
 if(request.getAttribute("snull")!=null){
 %>
 	<h1><%= (String)request.getAttribute("snull") %></h1>
@@ -116,8 +120,7 @@ if(vo!=null){
 %>
 <script>
 	function logout(){
-		<%-- session.removeAttribute("loginVO"); --%>
-		location.href = '/springnews/jobad';
+		location.href = '/springnews/resources/logout.jsp';
 	};
 	function isAdmin(command){
 		<% if(loginVO==null){ %>
