@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585115624841.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "957236545",
+    "id" : "BA2A52EE",
+    "lastKnownWriteTime" : 1585118409,
+    "last_content_update" : 1585118409962,
+    "path" : "C:/boxak/Rstudy/test2.R",
+    "project_path" : "test2.R",
+    "properties" : {
+        "cursorPosition" : "27,0",
+        "scrollLine" : "8",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
