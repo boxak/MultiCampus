@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585123805616.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "61477731",
+    "id" : "6397A5C6",
+    "lastKnownWriteTime" : 1585124934,
+    "last_content_update" : 1585124934931,
+    "path" : "C:/boxak/Rstudy/lab_07.R",
+    "project_path" : "lab_07.R",
+    "properties" : {
+        "cursorPosition" : "244,43",
+        "docOutlineVisible" : "0",
+        "scrollLine" : "225",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
