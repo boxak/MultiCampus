@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585221685346.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "69800ABA",
+    "lastKnownWriteTime" : 7310028807570858028,
+    "last_content_update" : 1585221685346,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "FE64EAC5",
+        "caption" : "stockInfo",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=stockInfo&cache_key=FE64EAC5",
+        "displayedObservations" : "3518",
+        "environment" : "",
+        "expression" : "stockInfo",
+        "object" : "stockInfo",
+        "preview" : "0",
+        "totalObservations" : "3518",
+        "variables" : "2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

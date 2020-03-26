@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585218874127.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3713856687",
+    "id" : "A960BE79",
+    "lastKnownWriteTime" : 1585199046,
+    "last_content_update" : 1585199046,
+    "path" : "C:/boxak/Rstudy/scraping.R",
+    "project_path" : "scraping.R",
+    "properties" : {
+        "cursorPosition" : "21,9",
+        "scrollLine" : "5",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
