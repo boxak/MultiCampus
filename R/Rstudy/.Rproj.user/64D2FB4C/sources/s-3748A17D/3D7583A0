@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585184773635.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1164349565",
+    "id" : "3D7583A0",
+    "lastKnownWriteTime" : 1585201706,
+    "last_content_update" : 1585201706216,
+    "path" : "C:/boxak/Rstudy/day5.R",
+    "project_path" : "day5.R",
+    "properties" : {
+        "cursorPosition" : "61,29",
+        "scrollLine" : "49",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
