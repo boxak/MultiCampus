@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585272407020.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "71221395",
+    "lastKnownWriteTime" : 1585272420,
+    "last_content_update" : 1585273046919,
+    "path" : "C:/boxak/Rstudy/navercomic.R",
+    "project_path" : "navercomic.R",
+    "properties" : {
+        "cursorPosition" : "12,1",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

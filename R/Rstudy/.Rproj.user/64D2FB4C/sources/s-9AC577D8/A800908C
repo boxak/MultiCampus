@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585216047790.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "13253497",
+    "id" : "A800908C",
+    "lastKnownWriteTime" : 1585268081,
+    "last_content_update" : 1585268081897,
+    "path" : "C:/boxak/Rstudy/kospi200.R",
+    "project_path" : "kospi200.R",
+    "properties" : {
+        "cursorPosition" : "26,0",
+        "scrollLine" : "7",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

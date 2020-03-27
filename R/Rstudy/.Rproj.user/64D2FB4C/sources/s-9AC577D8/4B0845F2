@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585273070852.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4B0845F2",
+    "lastKnownWriteTime" : 3533693178307223584,
+    "last_content_update" : 1585273070852,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "92B810D6",
+        "caption" : "navercomic",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=navercomic&cache_key=92B810D6",
+        "displayedObservations" : 24,
+        "environment" : "",
+        "expression" : "navercomic",
+        "object" : "navercomic",
+        "preview" : 0,
+        "totalObservations" : 24,
+        "variables" : 3
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
