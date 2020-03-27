@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585295000301.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1084837893",
+    "id" : "714ADB74",
+    "lastKnownWriteTime" : 1585299459,
+    "last_content_update" : 1585299459261,
+    "path" : "C:/boxak/Rstudy/webtoon1.R",
+    "project_path" : "webtoon1.R",
+    "properties" : {
+        "cursorPosition" : "19,27",
+        "scrollLine" : "10",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
