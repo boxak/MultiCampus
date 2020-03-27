@@ -23,4 +23,11 @@ for(page in 1:endpage){
   pricelist <- c(pricelist,tempprice)
 }
 
-stockInfo <- cbind(datelist,pricelist)
+datelist2 <- as.Date(datelist,format = "%Y.%m.%d")
+# stockInfo <- cbind(datelist2,pricelist)
+# matrix로 만들기 때문에 무조건 자료형이 같아야 하므로
+# Date타입을 무조건 numeric으로 바꿔버린다.
+stockInfo <- data.frame(
+  date=datelist2,
+  price=pricelist
+)
