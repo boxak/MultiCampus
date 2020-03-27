@@ -1,0 +1,37 @@
+library(rvest)
+library(stringr)
+install.packages('dplyr')
+library(dplyr)
+getwd()
+setwd('function')
+source("crawler.R",encoding = "UTF-8")
+encoding = "CP949"
+datelist <- vector()
+pricelist <- vector()
+url <- paste0("https://finance.naver.com/sise/sise_index_day.nhn?code=KPI200&page=",1)
+endpage <- page.getAttr(url = url,css="td.pgRR > a",encoding = encoding)
+endpage <- str_match(endpage,pattern = "page=\\d*")
+endpage <- str_remove_all(endpage,"[^0-9]")
+endpage <- as.integer(endpage)
+for(page in 1:endpage){
+  url <- paste0("https://finance.naver.com/sise/sise_index_day.nhn?code=KPI200&page=",page)
+  tempdate <- page.getContent(url = url,css = "td.date",encoding = "CP949",trim = TRUE)
+  tempprice <- page.getContent(url = url,css = "table.type_1 td:nth-child(2)",encoding = encoding,trim = TRUE)
+  tempdate <- tempdate[tempdate!=""]
+  tempprice <- tempprice[tempprice!=""]
+  datelist <- c(datelist,tempdate)
+  pricelist <- c(pricelist,tempprice)
+}
+
+datelist2 <- as.Date(datelist,format = "%Y.%m.%d")
+# stockInfo <- cbind(datelist2,pricelist)
+# matrix로 만들기 때문에 무조건 자료형이 같아야 하므로
+# Date타입을 무조건 numeric으로 바꿔버린다.
+stockInfo <- data.frame(
+  date=datelist2,
+  price=pricelist
+)
+
+install.packages('ggplot2')
+library(ggplot2)
+ggplot(stockInfo)

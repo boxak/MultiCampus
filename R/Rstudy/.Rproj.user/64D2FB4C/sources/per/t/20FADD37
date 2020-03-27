@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585282713994.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "751748947",
+    "id" : "20FADD37",
+    "lastKnownWriteTime" : 1585286191,
+    "last_content_update" : 1585286191399,
+    "path" : "C:/boxak/Rstudy/saramin.R",
+    "project_path" : "saramin.R",
+    "properties" : {
+        "cursorPosition" : "22,1",
+        "scrollLine" : "5",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
